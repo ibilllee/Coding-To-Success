@@ -4,3 +4,8 @@ spring:
 
 server:
   port: 8081
+mybatis:
+  type-aliases-package: com.scut.cts.entity
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
