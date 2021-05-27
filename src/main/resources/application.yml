@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: database
+server:
+  port: 8081
