@@ -1,0 +1,6 @@
+CREATE DATABASE IF NOT EXIST cts;
+USE cts;
+
+CREATE TABLE name(
+
+);

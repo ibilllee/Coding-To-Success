@@ -1,6 +1,6 @@
 package com.scut.cts.service.Impl;
 
-import com.scut.cts.entity.Test;
+import com.scut.cts.pojo.Test;
 import com.scut.cts.mapper.TestMapper;
 import com.scut.cts.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;

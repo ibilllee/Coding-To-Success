@@ -1,6 +1,6 @@
 package com.scut.cts.mapper;
 
-import com.scut.cts.entity.Test;
+import com.scut.cts.pojo.Test;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 

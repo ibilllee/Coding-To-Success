@@ -1,4 +1,4 @@
-package com.scut.cts.entity;
+package com.scut.cts.pojo;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
