@@ -29,7 +29,7 @@ public class TestController {
 		list.add(new Car(888));
 		resp.setData(list);
 		resp.setMsg("OK");
-		resp.setMsg("POK");
+		resp.setMsg("NOK");
 		resp.setStatus(200);
 		return resp;
 	}
