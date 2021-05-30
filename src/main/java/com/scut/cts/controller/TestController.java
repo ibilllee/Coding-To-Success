@@ -30,6 +30,7 @@ public class TestController {
 		resp.setData(list);
 		resp.setMsg("OK");
 		resp.setMsg("NOK");
+		resp.setMsg("AOK");
 		resp.setStatus(200);
 		return resp;
 	}
