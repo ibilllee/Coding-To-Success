@@ -29,8 +29,6 @@ public class TestController {
 		list.add(new Car(888));
 		resp.setData(list);
 		resp.setMsg("OK");
-		resp.setMsg("NOK");
-		resp.setMsg("BOK");
 		resp.setStatus(200);
 		return resp;
 	}
