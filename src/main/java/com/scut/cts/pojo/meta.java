@@ -1,0 +1,14 @@
+package com.scut.cts.pojo;
+
+import lombok.Data;
+
+@Data
+public class meta {
+	private String msg;
+	private int status;
+
+	public meta(String msg, int status) {
+		this.msg = msg;
+		this.status = status;
+	}
+}

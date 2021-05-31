@@ -2,6 +2,7 @@ package com.scut.cts.controller;
 
 import com.scut.cts.pojo.ResponseObj;
 import com.scut.cts.pojo.Test;
+import com.scut.cts.pojo.meta;
 import com.scut.cts.service.TestService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,7 @@ public class TestController {
 		list.add(new Man(18,"li"));
 		list.add(new Car(888));
 		resp.setData(list);
-		resp.setMsg("OK");
-		resp.setMsg("2OK");
-		resp.setMsg("1OK");
-		resp.setStatus(200);
+		resp.setMetaInfo(new meta("OK",200));
 		return resp;
 	}
 

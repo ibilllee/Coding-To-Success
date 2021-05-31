@@ -1,9 +1,9 @@
 package com.scut.cts.pojo;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import tk.mybatis.mapper.annotation.KeySql;
 
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
@@ -12,7 +12,7 @@ public class Test
 {
 	@Id
 	@KeySql(useGeneratedKeys = true)
-	private int id;
+	private Integer id;
 
 	private String name;
 
