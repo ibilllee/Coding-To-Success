@@ -11,5 +11,16 @@ public class User {
     @Id
     private String userId;
     private String password;
-    private boolean status=true;
+    private Integer status=1;
+
+    public User(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public User(String userId, String password, int status) {
+        this.userId = userId;
+        this.password = password;
+        this.status = status;
+    }
 }
