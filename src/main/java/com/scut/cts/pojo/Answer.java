@@ -2,6 +2,7 @@ package com.scut.cts.pojo;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +11,5 @@ import javax.persistence.Table;
 public class Answer {
 	@Id
 	private Integer ansProbId;
-
 	private String content;
 }
