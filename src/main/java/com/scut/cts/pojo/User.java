@@ -11,5 +11,5 @@ public class User {
     @Id
     private String userId;
     private String password;
-    private boolean status;
+    private boolean status=true;
 }
