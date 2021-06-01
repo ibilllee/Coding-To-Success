@@ -20,8 +20,8 @@ public class CommentServiceImplTest {
 
 	@Test
 	public void addComment(){
-		Comment comment1 = new Comment(null,1,"user","内容",null,null);
-		Comment comment2 = new Comment(null,1,"user","内容",1,commentService.getReplyCount(1,1)+1);
+		Comment comment1 = new Comment(1,"user","内容",null,null);
+		Comment comment2 = new Comment(1,"user","内容",1,commentService.getReplyCount(1,1)+1);
 		commentService.addComment(comment1);
 		commentService.addComment(comment2);
 	}
