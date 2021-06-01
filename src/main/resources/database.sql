@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS  problem(
 	ON UPDATE RESTRICT
 	);
 
-CREATE TABLE IF NOT EXISTS  answer(
+CREATE TABLE IF NOT EXISTS answer(
 	ans_prob_id int primary key,
 	content TEXT,
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS  answer(
 	);
 
 CREATE TABLE IF NOT EXISTS  bulletin(
-	bulletin_id int primary key,
+	bulletin_id int AUTO_INCREMENT primary key,
 	content TEXT);
 
 INSERT INTO user VALUES("user","user",true);
