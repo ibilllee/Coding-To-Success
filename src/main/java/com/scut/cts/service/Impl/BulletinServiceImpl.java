@@ -20,13 +20,7 @@ public class BulletinServiceImpl implements BulletinService {
 
 	@Override
 	public boolean updateBulletin(Bulletin bulletin) {
-		try {
-			bulletinMapper.updateContentByBulletinId(bulletin.getBulletinId(), bulletin.getContent());
-		}catch (Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+		return 	bulletinMapper.updateContentByBulletinId(bulletin.getBulletinId(), bulletin.getContent())==1;
 	}
 
 	@Override

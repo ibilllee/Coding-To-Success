@@ -23,7 +23,7 @@ public class BulletinServiceImplTest {
 
 	@Test
 	public void updateBulletin() {
-		bulletinService.updateBulletin(new Bulletin(1,"改了的公告"));
+		bulletinService.updateBulletin(new Bulletin(2,"改了的公告"));
 	}
 
 	@Test
