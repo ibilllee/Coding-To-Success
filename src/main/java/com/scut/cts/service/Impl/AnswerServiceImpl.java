@@ -15,4 +15,6 @@ public class AnswerServiceImpl implements AnswerService {
 	public Answer getAnswer(int probId) {
 		return answerMapper.selectByPrimaryKey(probId);
 	}
+
+
 }
