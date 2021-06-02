@@ -5,5 +5,5 @@ import com.scut.cts.pojo.Test;
 
 public interface TestService
 {
-	public Test add(Test test);
+	Test add(Test test);
 }

@@ -5,8 +5,8 @@ import com.scut.cts.pojo.Bulletin;
 import java.util.List;
 
 public interface BulletinService {
-	public boolean addBulletin(Bulletin bulletin);
-	public boolean updateBulletin(Bulletin bulletin);
-	public boolean deleteBulletin(Bulletin bulletin);
-	public List<Bulletin> getAllBulletin();
+	boolean addBulletin(Bulletin bulletin);
+	boolean updateBulletin(Bulletin bulletin);
+	boolean deleteBulletin(Bulletin bulletin);
+	List<Bulletin> getAllBulletin();
 }

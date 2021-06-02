@@ -11,11 +11,11 @@ import java.util.List;
 public interface CommentMapper extends Mapper<Comment> {
 
 	@Select("select * from comment where comment_tuto_id = #{tutoId}")
-	public List<Comment> selectByTutoId(int tutoId);
+	List<Comment> selectByTutoId(int tutoId);
 
 	@Select("select count(*) from comment where comment_tuto_id = #{tutoId} and reply_to = #{commentId}")
-	public int getReplyCount(int tutoId, int commentId);
+	int getReplyCount(int tutoId, int commentId);
 
 	@Update("UPDATE comment SET comment_user_id = 'CLOSED_ACCOUNT' WHERE comment_user_id = #{userId}")
-	public int updateToClosedAccountByUserId(String userId);
+	int updateToClosedAccountByUserId(String userId);
 }
