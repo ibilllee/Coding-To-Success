@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean blockUser(String userId) {
-		return userMapper.updateStatusByUserId(new User(userId,null,0))==1;
+		return userMapper.updateByPrimaryKeySelective(new User(userId,null,0))==1;
 	}
 
 	@Override
 	public boolean unblockUser(String userId) {
-		return userMapper.updateStatusByUserId(new User(userId,null,1))==1;
+		return userMapper.updateByPrimaryKeySelective(new User(userId,null,1))==1;
 	}
 
 	@Override
