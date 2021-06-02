@@ -27,7 +27,7 @@ public class UserMapperTest {
 
 	@Test
 	public void update(){
-		System.out.println(userMapper.updateStatusByUserId(new User("username",null,0)));
+		System.out.println(userMapper.updateByPrimaryKeySelective(new User("username",null,0)));
 	}
 
 	@Test
