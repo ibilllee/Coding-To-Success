@@ -20,8 +20,10 @@ public class AnswerController {
 	private AnswerService answerService;
 
 	@GetMapping
-	public RespBean getAnswer(@RequestParam(value = "problemId") int probId){
+	public RespBean getAnswer(@RequestParam(value = "problemId") int probId) {
 		Answer answer = answerService.getAnswer(probId);
-		return RespBean.ok("响应成功",answer.getContent());
+		if (answer != null)
+			return RespBean.ok("响应成功", answer.getContent());
+		return RespBean.unprocessable("响应失败");
 	}
 }

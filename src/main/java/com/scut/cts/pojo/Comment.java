@@ -3,15 +3,13 @@ package com.scut.cts.pojo;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Table(name="comment")
 public class Comment {
 	@Id
-	@KeySql(useGeneratedKeys = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer commentId;
 	private Integer commentTutoId;
 	private String commentUserId;

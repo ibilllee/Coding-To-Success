@@ -253,12 +253,10 @@
 
 | 参数名        | 参数说明         | 备注     |
 | ------------- | ---------------- | -------- |
-| commentId     | 评论ID           | 不能为空 |
 | commentTutoId | 评论所属的教程ID | 不能为空 |
 | commentUserId | 评论所属的用户ID | 不能为空 |
 | content       | 评论内容         | 不能为空 |
-| replyTo       | 评论对象         | 不能为空 |
-| replyOrder    | 评论次序         | 不能为空 |
+| replyTo       | 回复对象         |          |
 
  
 
@@ -266,35 +264,18 @@
 
 ```json
 json{
-
-“data”: {
-
-“commentId”: 1
-
-​	“commentTutoId”: 1
-
-​	“commentUserId”: 13
-
-​	“content”: “评论测试内容”
-
-​	“replyTo”: 1
-
-​	“replyOrder”: 7
-
-},
-
-“meta”:{
-
- “msg”: “评论创建成功”,
-
- “status”: “201”
-
-}
-
-}
-
- 
-
+  "data": {
+    "commentId": 1
+    "commentTutoId": 1
+    "commentUserId": "username"
+    "content": "评论测试内容"
+    "replyTo": 1
+    "replyOrder": 7
+  },
+  "meta":{
+    "msg": "评论创建成功",
+    "status": "201"
+	}
 }
 ```
 
@@ -329,35 +310,35 @@ json{
 ```json
 {
 
-“data”: {
+"data": {
 
-“comment”:[
+"comment":[
 
 {
 
-​		“commentUserId”: 123,
+​		"commentUserId": 123,
 
-“content”: “评论测试内容”, 
+"content": "评论测试内容", 
 
-“replyTo”: 1
+"replyTo": 1
 
-​		“replyOrder”: 1	
+​		"replyOrder": 1	
 
-​		“create_time”: “2021-06-01 19:42:23”
+​		"create_time": "2021-06-01 19:42:23"
 
 },
 
 {
 
-​	“commentUserId”: 231,
+​	"commentUserId": 231,
 
-​	“content”: “评论测试内容”,
+​	"content": "评论测试内容",
 
-“replyTo”: 1
+"replyTo": 1
 
-​		“replyOrder”: 2
+​		"replyOrder": 2
 
-​	“create_time”: “2021-06-01 19:44:23”
+​	"create_time": "2021-06-01 19:44:23"
 
 }
 
@@ -365,11 +346,11 @@ json{
 
 },
 
-“meta”:{
+"meta":{
 
- “msg”: “获取评论成功”,
+ "msg": "获取评论成功",
 
- “status”: “200”
+ "status": "200"
 
 }
 

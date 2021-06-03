@@ -30,6 +30,31 @@ public class RespBean {
 		return new RespBean(msg,200,obj);
 	}
 
+	public static RespBean created(String msg){
+		return new RespBean(msg,201,null);
+	}
+
+	public static RespBean created(String msg, Object obj) {
+		return new RespBean(msg,201,obj);
+	}
+
+	public static RespBean deleted(String msg){
+		return new RespBean(msg,204,null);
+	}
+
+	public static RespBean deleted(String msg, Object obj) {
+		return new RespBean(msg,204,obj);
+	}
+
+	public static RespBean unprocessable(String msg){
+		return new RespBean(msg,422,null);
+	}
+
+	public static RespBean unprocessable(String msg, Object obj) {
+		return new RespBean(msg,422,obj);
+	}
+
+
 	public static RespBean error(String msg) {
 		return new RespBean( msg,500, null);
 	}
