@@ -1,18 +1,16 @@
 package com.scut.cts.controller;
 
-import com.scut.cts.pojo.ResponseObj;
+import com.scut.cts.pojo.RespBean;
 import com.scut.cts.pojo.Test;
 import com.scut.cts.pojo.meta;
 import com.scut.cts.service.TestService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/test")
@@ -23,8 +21,8 @@ public class TestController {
 
 	@ResponseBody
 	@RequestMapping("/hello")
-	public ResponseObj hello(){
-		ResponseObj resp = new ResponseObj();
+	public RespBean hello(){
+		RespBean resp = new RespBean();
 		ArrayList<Object> list = new ArrayList<>();
 		list.add(new Man(18,"li"));
 		list.add(new Car(888));
