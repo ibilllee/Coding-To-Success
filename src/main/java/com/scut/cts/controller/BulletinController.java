@@ -17,7 +17,7 @@ public class BulletinController
 	private BulletinService bulletinService;
 
 	@PostMapping
-	public RespBean addBulletin(@RequestBody Bulletin bulletin) {
+	public RespBean addBulletin(@RequestParam(value = "content") Bulletin bulletin) {
 		boolean result = bulletinService.addBulletin(bulletin);
 		if (result)
 			return RespBean.created("公告创建成功", bulletin);
@@ -25,7 +25,7 @@ public class BulletinController
 	}
 
 	@PutMapping("/modify/{bulletinId}")
-	public RespBean updateBulletin(@PathVariable int bulletinId,@RequestBody Bulletin bulletin){
+	public RespBean updateBulletin(@PathVariable int bulletinId,@RequestParam Bulletin bulletin){
 		bulletin.setBulletinId(bulletinId);
 		boolean result = bulletinService.updateBulletin(bulletin);
 		if (result)

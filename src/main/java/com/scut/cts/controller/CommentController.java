@@ -4,10 +4,7 @@ import com.scut.cts.pojo.Comment;
 import com.scut.cts.pojo.RespBean;
 import com.scut.cts.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/comment")
@@ -17,7 +14,7 @@ public class CommentController
 	private CommentService commentService;
 
 	@PostMapping
-	public RespBean addComment(@RequestBody Comment comment) {
+	public RespBean addComment(@RequestParam Comment comment) {
 		boolean result = commentService.addComment(comment);
 		if (result)
 			return RespBean.created("评论创建成功", comment);
