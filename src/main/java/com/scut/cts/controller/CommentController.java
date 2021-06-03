@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/comment")
-public class CommentController {
+public class CommentController
+{
 	@Autowired
 	private CommentService commentService;
 
 	@PostMapping
-	public RespBean addComment(Comment comment){
+	public RespBean addComment(@RequestBody Comment comment) {
 		boolean result = commentService.addComment(comment);
-		if(result){
-			return RespBean.created("评论创建成功",comment);
-		}else {
-			return RespBean.unprocessable("评论创建失败",comment);
-		}
+		if (result)
+			return RespBean.created("评论创建成功", comment);
+		return RespBean.unprocessable("评论创建失败", comment);
 	}
 }

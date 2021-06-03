@@ -24,8 +24,8 @@ public class BulletinServiceImpl implements BulletinService {
 	}
 
 	@Override
-	public boolean deleteBulletin(Bulletin bulletin) {
-		return bulletinMapper.deleteByPrimaryKey(bulletin.getBulletinId())==1;
+	public boolean deleteBulletin(int bulletinId) {
+		return bulletinMapper.deleteByPrimaryKey(bulletinId)==1;
 	}
 
 	@Override

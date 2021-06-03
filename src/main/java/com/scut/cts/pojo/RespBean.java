@@ -38,14 +38,6 @@ public class RespBean {
 		return new RespBean(msg,201,obj);
 	}
 
-	public static RespBean deleted(String msg){
-		return new RespBean(msg,204,null);
-	}
-
-	public static RespBean deleted(String msg, Object obj) {
-		return new RespBean(msg,204,obj);
-	}
-
 	public static RespBean unprocessable(String msg){
 		return new RespBean(msg,422,null);
 	}
