@@ -3,16 +3,17 @@ package com.scut.cts.pojo;
 import lombok.Data;
 
 @Data
-public class Code
+public class UserCode
 {
 	private String code;
+	private String userId;
 	private Integer probId;
 
-	public Code() {
-	}
+	public UserCode(){}
 
-	public Code(String code, Integer probId) {
+	public UserCode(String code, String userId, Integer probId) {
 		this.code = code;
+		this.userId = userId;
 		this.probId = probId;
 	}
 }

@@ -1,8 +1,8 @@
 package com.scut.cts.service;
 
-import com.scut.cts.pojo.Code;
+import com.scut.cts.pojo.UserCode;
 
 public interface CodeService {
-	boolean saveCode(Code code);
-	Code getCode(String userId, int probId);
+	boolean saveCode(UserCode userCode);
+	UserCode getCode(String userId, int probId);
 }

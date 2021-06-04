@@ -125,12 +125,12 @@
     | 参数名 | 参数说明            | 备注     |
     | ------ | ------------------- | -------- |
     | probId | Problem的唯一标识符 | 不能为空 |
-    | code   | 用户的代码          | 不能为空 |
+    | userCode   | 用户的代码          | 不能为空 |
     
     ```json
     {
         "probId":"dierti",
-        "code":"#include <iostream>\nint main()\n{..."
+        "userCode":"#include <iostream>\nint main()\n{..."
     }
     ```
     
