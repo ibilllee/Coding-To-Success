@@ -28,7 +28,7 @@ public class BulletinServiceImplTest {
 
 	@Test
 	public void deleteBulletin(){
-		bulletinService.deleteBulletin(new Bulletin(1,""));
+		bulletinService.deleteBulletin(1);
 	}
 
 	@Test

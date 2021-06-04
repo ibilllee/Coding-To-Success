@@ -7,6 +7,6 @@ import java.util.List;
 public interface BulletinService {
 	boolean addBulletin(Bulletin bulletin);
 	boolean updateBulletin(Bulletin bulletin);
-	boolean deleteBulletin(Bulletin bulletin);
+	boolean deleteBulletin(int bulletinId);
 	List<Bulletin> getAllBulletin();
 }
