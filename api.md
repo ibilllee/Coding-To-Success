@@ -247,7 +247,7 @@
   "data": {
     "commentId": 1,
     "commentTutoId": 1,
-    "commentUserId": "username",
+    "commentUserId": "userId",
     "content": "评论测试内容",
     "replyTo": 1,
     "replyOrder": 7
@@ -679,7 +679,7 @@ json
 
   | 参数名   | 参数说明 | 备注     |
   | -------- | -------- | -------- |
-  | username | 用户名   | 不能为空 |
+  | userId | 用户名   | 不能为空 |
 
 - 响应数据
 
@@ -703,7 +703,7 @@ json
 
   | 参数名   | 参数说明 | 备注     |
   | -------- | -------- | -------- |
-  | username | 用户名   | 不能为空 |
+  | userId | 用户名   | 不能为空 |
 
 - 响应数据
 
@@ -711,7 +711,7 @@ json
   {
       "data": null,
       "meta": {
-          "msg": "封禁成功",
+          "msg": "解封成功",
           "status": 200
       }
   }
@@ -727,7 +727,7 @@ json
 
   | 参数名   | 参数说明 | 备注     |
   | -------- | -------- | -------- |
-  | username | 用户名   | 不能为空 |
+  | userId | 用户名   | 不能为空 |
 
 - 响应数据
 
