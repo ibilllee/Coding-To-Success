@@ -16,6 +16,8 @@ public class Bulletin {
 	private Integer bulletinId;
 	private String content;
 
+	public Bulletin(){}
+
 	public Bulletin(String content) {
 		this.content = content;
 	}

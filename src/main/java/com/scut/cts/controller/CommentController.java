@@ -14,8 +14,13 @@ public class CommentController
 	private CommentService commentService;
 
 	@PostMapping
-	public RespBean addComment(@RequestParam Comment comment) {
-		boolean result = commentService.addComment(comment);
+	public RespBean addComment(Comment comment) {
+		boolean result;
+		try {
+			result = commentService.addComment(comment);
+		}catch (Exception e){
+			return RespBean.unprocessable("评论创建失败"+e.getMessage(), comment);
+		}
 		if (result)
 			return RespBean.created("评论创建成功", comment);
 		return RespBean.unprocessable("评论创建失败", comment);

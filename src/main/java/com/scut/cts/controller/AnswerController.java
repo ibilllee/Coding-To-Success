@@ -21,7 +21,12 @@ public class AnswerController {
 
 	@GetMapping
 	public RespBean getAnswer(@RequestParam(value = "problemId") int probId) {
-		Answer answer = answerService.getAnswer(probId);
+		Answer answer ;
+		try {
+			answer=answerService.getAnswer(probId);
+		}catch (Exception e){
+			return RespBean.unprocessable("响应失败"+e.getMessage());
+		}
 		if (answer != null)
 			return RespBean.ok("响应成功", answer.getContent());
 		return RespBean.unprocessable("响应失败");

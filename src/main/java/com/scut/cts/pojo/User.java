@@ -13,6 +13,8 @@ public class User {
     private String password;
     private Integer status=1;
 
+    public User(){}
+
     public User(String userId, String password) {
         this.userId = userId;
         this.password = password;

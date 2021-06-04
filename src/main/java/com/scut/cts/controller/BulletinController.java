@@ -17,17 +17,28 @@ public class BulletinController
 	private BulletinService bulletinService;
 
 	@PostMapping
-	public RespBean addBulletin(@RequestParam(value = "content") Bulletin bulletin) {
-		boolean result = bulletinService.addBulletin(bulletin);
+	public RespBean addBulletin(@RequestParam String content) {
+		Bulletin bulletin = new Bulletin(content);
+		boolean result ;
+		try {
+			result=bulletinService.addBulletin(bulletin);
+		} catch (Exception e){
+			return RespBean.unprocessable("公告创建失败"+e.getMessage(), bulletin);
+		}
 		if (result)
 			return RespBean.created("公告创建成功", bulletin);
 		return RespBean.unprocessable("公告创建失败", bulletin);
 	}
 
 	@PutMapping("/modify/{bulletinId}")
-	public RespBean updateBulletin(@PathVariable int bulletinId,@RequestParam Bulletin bulletin){
-		bulletin.setBulletinId(bulletinId);
-		boolean result = bulletinService.updateBulletin(bulletin);
+	public RespBean updateBulletin(@PathVariable int bulletinId,@RequestParam String content){
+		Bulletin bulletin = new Bulletin(bulletinId, content);
+		boolean result ;
+		try {
+			result=bulletinService.updateBulletin(bulletin);
+		} catch (Exception e){
+			return RespBean.unprocessable("更新失败"+e.getMessage(), bulletin);
+		}
 		if (result)
 			return RespBean.ok("更新成功",bulletin);
 		return RespBean.unprocessable("更新失败", bulletin);
@@ -35,7 +46,12 @@ public class BulletinController
 
 	@DeleteMapping("/{bulletinId}")
 	public RespBean deleteBulletin(@PathVariable int bulletinId){
-		boolean result = bulletinService.deleteBulletin(bulletinId);
+		boolean result ;
+		try {
+			result=bulletinService.deleteBulletin(bulletinId);
+		} catch (Exception e){
+			return RespBean.unprocessable("删除失败"+e.getMessage());
+		}
 		if (result)
 			return RespBean.ok("删除成功");
 		return RespBean.unprocessable("删除失败");
