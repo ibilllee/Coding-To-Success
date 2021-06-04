@@ -11,10 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -48,8 +45,29 @@ public class CodeController
 		return RespBean.ok("编译失败", null);
 	}
 
-	@PostMapping
-	public RespBean saveCode(){
+	@PostMapping("/save")
+	public RespBean saveCode(UserCode userCode){
+		boolean result;
+		try {
+			result=codeService.saveCode(userCode);
+		}catch (Exception e){
+			return RespBean.unprocessable("代码暂存失败！"+e.getMessage());
+		}
+		if (result)
+			return RespBean.ok("代码暂存成功！");
+		return RespBean.unprocessable("代码暂存失败！");
+	}
 
+	@GetMapping("/get/{probId}/{userId}")
+	public RespBean getCode(@PathVariable int probId,@PathVariable String userId){
+		UserCode code;
+		try {
+			code = codeService.getCode(userId, probId);
+		}catch (Exception e){
+			return RespBean.unprocessable("代码获取失败！"+e.getMessage());
+		}
+		if(code.getCode()!=null)
+		return RespBean.ok("代码获取成功！",code.getCode());
+		return RespBean.unprocessable("代码获取失败！缓存中没有指定代码");
 	}
 }
