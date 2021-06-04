@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS  admin(
 
 CREATE TABLE IF NOT EXISTS  tutorial(
     tuto_id INT PRIMARY KEY,
-    title VARCHAR(255),
+    title_content VARCHAR(255),
     title_num DOUBLE NOT NULL,
     content LONGTEXT);
 
@@ -75,3 +75,5 @@ INSERT INTO problem VALUES(1,1,"内容");
 INSERT INTO answer VALUES(1,"内容");
 INSERT INTO COMMENT VALUES(NULL ,1,"user","内容1",NULL,NULL);
 INSERT INTO COMMENT VALUES(NULL ,1,"user","内容2",2,1);
+
+INSERT INTO ADMIN VALUES("admin","admin");

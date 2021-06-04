@@ -12,4 +12,12 @@ public class Problem {
     private Integer probId;
     private Integer probTutoId;
     private String content;
+
+    public Problem() {}
+
+    public Problem(Integer probId, Integer probTutoId, String content) {
+        this.probId = probId;
+        this.probTutoId = probTutoId;
+        this.content = content;
+    }
 }

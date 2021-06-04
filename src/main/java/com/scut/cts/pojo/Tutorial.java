@@ -17,7 +17,17 @@ public class Tutorial {
     private List<Comment> commentList;
     private List<Problem> problemList;
 
+    public Tutorial() {}
+
     public Tutorial(Integer tutoId) {
         this.tutoId = tutoId;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public void setProblemList(List<Problem> problemList) {
+        this.problemList = problemList;
     }
 }

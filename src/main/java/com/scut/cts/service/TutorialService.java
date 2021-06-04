@@ -8,6 +8,6 @@ public interface TutorialService {
     public boolean addTutorial(Tutorial tutorial);
     public boolean updateTutorial(Tutorial tutorial);
     public boolean deleteTutorial(Integer tutorialId);
-
-    public List<Tutorial> getTutorials(double titleNum);
+    public Tutorial getTutorial(Integer tutorialId);
+    public List<String> getTitle(Double titleNum);
 }

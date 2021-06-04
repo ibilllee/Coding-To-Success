@@ -15,6 +15,22 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceImplTest {
 	@Autowired
 	private UserService userService;
+
+	@Test
+	public void register() {
+		System.out.println(userService.register(new User("AAA","123456")));
+	}
+
+	@Test
+	public void login() {
+		System.out.println(userService.login(new User("user","user")));
+	}
+
+	@Test
+	public void updateUser() {
+		System.out.println(userService.updateUser(new User(null, "111111")));
+	}
+
 	@Test
 	public void blockUser(){
 		userService.blockUser("user");
