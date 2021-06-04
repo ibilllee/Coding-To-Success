@@ -4,7 +4,9 @@ import com.scut.cts.mapper.AdminMapper;
 import com.scut.cts.pojo.Admin;
 import com.scut.cts.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
