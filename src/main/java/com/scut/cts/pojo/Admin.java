@@ -11,4 +11,11 @@ public class Admin {
     @Id
     private String adminId;
     private String password;
+
+    public Admin() {}
+
+    public Admin(String adminId, String password) {
+        this.adminId = adminId;
+        this.password = password;
+    }
 }

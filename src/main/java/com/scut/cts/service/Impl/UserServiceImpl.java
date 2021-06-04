@@ -8,12 +8,30 @@ import com.scut.cts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
 	private CommentMapper commentMapper;
+
+	@Override
+	public boolean register(User user) {
+		return userMapper.insert(user)==1;
+	}
+
+	@Override
+	public boolean login(User user) {
+		User result = userMapper.selectOne(user);
+		if(result == null)return false;
+		return true;
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		return userMapper.updateByPrimaryKeySelective(user)==1;
+	}
 
 	@Override
 	public boolean blockUser(String userId) {
