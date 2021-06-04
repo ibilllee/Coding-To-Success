@@ -47,4 +47,9 @@ public class CodeController
 			return RespBean.ok("编译成功", body);
 		return RespBean.ok("编译失败", null);
 	}
+
+	@PostMapping
+	public RespBean saveCode(){
+
+	}
 }

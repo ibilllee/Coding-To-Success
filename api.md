@@ -115,7 +115,7 @@
 | titleNum     | 标号     |      |
 | content      | 教程内容 |      |
 | commentList  | 评论列表 |      |
-| problemList  | 问题列表 |      |
+| proList  | 问题列表 |      |
 
 - 响应数据
 
@@ -143,7 +143,7 @@
         "replyOrder": 21
       }
     ],
-    "problemList": [
+    "proList": [
       {
         "probId": 5,
         "probTutoId": 9,
@@ -590,7 +590,7 @@ json
 
   | 参数名    | 参数说明 | 备注     |
   | --------- | -------- | -------- |
-  | problemId | 题目Id   | 不能为空 |
+  | proId | 题目Id   | 不能为空 |
   | userCode      | C++代码  | 不能为空 |
 
 
@@ -645,7 +645,7 @@ json
 
   | 参数名    | 参数说明 | 备注     |
   | --------- | -------- | -------- |
-  | problemId | 题目Id   | 不能为空 |
+  | proId | 题目Id   | 不能为空 |
 
 - 响应参数
 
@@ -928,7 +928,7 @@ json
 
 | 参数名    | 参数说明 | 备注     |
 | --------- | -------- | -------- |
-| problemId | 问题id   | 不能为空 |
+| proId | 问题id   | 不能为空 |
 | userId    | 用户id   | 不能为空 |
 | code      | 代码内容 | 不能为空 |
 
@@ -952,7 +952,7 @@ json
 
 #### 19.2 获取用户代码
 
-- 请求路径：code/get/:problemId/:userId
+- 请求路径：code/get/:proId/:userId
 
 - 请求方法：get
 
@@ -960,7 +960,7 @@ json
 
 | 参数名    | 参数说明 | 备注     |
 | --------- | -------- | -------- |
-| problemId | 问题id   | 不能为空 |
+| probId | 问题id   | 不能为空 |
 | userId    | 用户id   | 不能为空 |
 
 - 响应参数
