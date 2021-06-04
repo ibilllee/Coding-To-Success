@@ -29,7 +29,7 @@ public class CodeController
 
 	@PostMapping
 	public RespBean testCode(@RequestParam(value = "userCode") String userCode,
-							 @RequestParam(value = "problemId") int probId) {
+							 @RequestParam(value = "probId") int probId) {
 		Code code = new Code(userCode, probId);
 
 		String url = "http://localhost:8081/judger";
