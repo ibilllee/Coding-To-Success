@@ -11,8 +11,13 @@ import java.util.List;
 public class Tutorial {
     @Id
     private Integer tutoId;
-    private String title;
+    private String titleContent;
     private double titleNum;
     private String content;
     private List<Comment> commentList;
+    private List<Problem> problemList;
+
+    public Tutorial(Integer tutoId) {
+        this.tutoId = tutoId;
+    }
 }
