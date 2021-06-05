@@ -30,8 +30,9 @@ public class TokenAspect
 	public void checkToken(JoinPoint joinPoint) throws Throwable {
 		/*String methodName = joinPoint.getSignature().getName();
 		if (!noTokenMethods.contains(methodName)) {
-			String token = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("token");
-			if(!TokenUtils.verify(token)){
+			String token = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).
+					getRequest().getHeader("Authorization");
+			if (!TokenUtils.verify(token)) {
 				throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Your token is invalid");
 			}
 		}*/
