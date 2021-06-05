@@ -2,6 +2,8 @@ package com.scut.cts.pojo;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 @Table(name = "tutorial")
 public class Tutorial {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer tutoId;
     private String titleContent;
     private double titleNum;

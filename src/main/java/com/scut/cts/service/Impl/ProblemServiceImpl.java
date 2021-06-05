@@ -23,6 +23,11 @@ public class ProblemServiceImpl implements ProblemService {
     }
 
     @Override
+    public boolean addProblem(Problem problem) {
+        return problemMapper.insert(problem)==1;
+    }
+
+    @Override
     public boolean updateProblem(Problem problem) {
         return problemMapper.updateByPrimaryKeySelective(problem)==1;
     }
