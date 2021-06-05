@@ -16,7 +16,7 @@ public class TokenUtils
 	private static final String TOKEN_SECRET = "ASDHJK98SAB13DUXIC34VNUZ";//token秘钥
 
 
-	public static String token (String userId,String password){
+	public static String getToken(String userId, String password){
 		String token = "";
 		try {
 			//过期时间
