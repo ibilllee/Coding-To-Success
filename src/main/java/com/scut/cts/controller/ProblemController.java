@@ -13,8 +13,9 @@ public class ProblemController {
     private ProblemService problemService;
 
     @PostMapping("/add")
-    public RespBean addProblem(@RequestParam Integer tutoId,@RequestParam String content) {
-        Problem problem = new Problem(tutoId,content);
+    public RespBean addProblem(@RequestParam Integer probId, @RequestParam Integer tutoId,
+                               @RequestParam String content) {
+        Problem problem = new Problem(probId,tutoId,content);
         boolean result;
         try {
             result = problemService.addProblem(problem);
@@ -28,8 +29,9 @@ public class ProblemController {
     }
 
     @PutMapping("/modify")
-    public RespBean updateProblem(@RequestParam String content) {
-        Problem problem = new Problem(content);
+    public RespBean updateProblem(@RequestParam Integer probId, @RequestParam Integer tutoId,
+                                  @RequestParam String content) {
+        Problem problem = new Problem(probId, tutoId, content);
         boolean result;
         try {
             result = problemService.updateProblem(problem);
