@@ -26,6 +26,17 @@ public class Tutorial {
         this.tutoId = tutoId;
     }
 
+    public Tutorial(Integer tutoId, String content) {
+        this.tutoId = tutoId;
+        this.content = content;
+    }
+
+    public Tutorial(String titleContent, String content, double titleNum) {
+        this.titleContent = titleContent;
+        this.content = content;
+        this.titleNum = titleNum;
+    }
+
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }

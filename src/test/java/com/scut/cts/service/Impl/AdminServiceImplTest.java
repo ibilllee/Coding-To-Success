@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AdminServiceImplTest {
@@ -14,12 +17,12 @@ public class AdminServiceImplTest {
     private AdminServiceImpl adminService;
 
     @Test
-    public void login() {
+    public void login() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         System.out.println(adminService.login(new Admin("admin","admin")));
     }
 
     @Test
-    public void updateAdmin() {
+    public void updateAdmin() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         System.out.println(adminService.updateAdmin(new Admin("admin","123456")));
     }
 }
