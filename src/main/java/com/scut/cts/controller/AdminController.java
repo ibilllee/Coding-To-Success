@@ -32,9 +32,9 @@ public class AdminController
 		return RespBean.unprocessable("管理员登录失败");
 	}
 
-	@PutMapping("/adminId/:AdminId")
-	public RespBean updateAdmin(@RequestParam String adminId, @RequestParam String password) {
-		Admin admin = new Admin(adminId,password);
+	@PutMapping("/adminId/{AdminId}")
+	public RespBean updateAdmin(@RequestParam String AdminId, @RequestParam String password) {
+		Admin admin = new Admin(AdminId,password);
 		boolean result;
 		try {
 			result = adminService.updateAdmin(admin);

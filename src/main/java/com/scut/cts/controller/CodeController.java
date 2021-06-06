@@ -45,6 +45,21 @@ public class CodeController
 		return RespBean.ok("编译失败", null);
 	}
 
+	@PostMapping
+	public RespBean transfromData(@RequestParam String data, @RequestParam Integer probId) {
+		String url = "http://localhost:8081/judger";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+		map.add("probId", String.valueOf(probId));
+		map.add("data", data);
+
+		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+		ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+
+		return RespBean.ok("数据已转发");
+	}
+
 	@PostMapping("/save")
 	public RespBean saveCode(UserCode userCode){
 		boolean result;
