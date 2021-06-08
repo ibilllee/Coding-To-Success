@@ -18,4 +18,7 @@ public interface CommentMapper extends Mapper<Comment> {
 
 	@Update("UPDATE comment SET comment_user_id = 'CLOSED_ACCOUNT' WHERE comment_user_id = #{userId}")
 	int updateToClosedAccountByUserId(String userId);
+
+	@Delete("DELETE FROM comment WHERE comment_tuto_id = #{tutoId}")
+	int deleteByTutoId(Integer tutoId);
 }

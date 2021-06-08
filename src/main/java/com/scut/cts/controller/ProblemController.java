@@ -13,9 +13,9 @@ public class ProblemController {
     private ProblemService problemService;
 
     @PostMapping("/add")
-    public RespBean addProblem(@RequestParam Integer probId, @RequestParam Integer tutoId,
+    public RespBean addProblem(@RequestParam Integer probId, @RequestParam Integer probTutoId,
                                @RequestParam String content) {
-        Problem problem = new Problem(probId,tutoId,content);
+        Problem problem = new Problem(probId,probTutoId,content);
         boolean result;
         try {
             result = problemService.addProblem(problem);

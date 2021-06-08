@@ -15,7 +15,7 @@ public class Tutorial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer tutoId;
     private String titleContent;
-    private double titleNum;
+    private Double titleNum;
     private String content;
     private List<Comment> commentList;
     private List<Problem> problemList;

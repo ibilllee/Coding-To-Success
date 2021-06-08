@@ -44,7 +44,7 @@ public class CodeController
 			return RespBean.ok("编译成功", body);
 		return RespBean.ok("编译失败", null);
 	}
-
+/*
 	@PostMapping
 	public RespBean transfromData(@RequestParam String data, @RequestParam Integer probId) {
 		String url = "http://localhost:8081/judger";
@@ -58,7 +58,7 @@ public class CodeController
 		ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
 
 		return RespBean.ok("数据已转发");
-	}
+	}*/
 
 	@PostMapping("/save")
 	public RespBean saveCode(UserCode userCode){

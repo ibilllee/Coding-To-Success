@@ -473,7 +473,7 @@ json
           "content": "xxx内容"
       },
       "meta": {
-          "msg": "获取成功",
+          "msg": "添加成功",
           "status": 200
           
       }

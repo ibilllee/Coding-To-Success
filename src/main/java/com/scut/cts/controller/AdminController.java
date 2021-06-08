@@ -24,7 +24,7 @@ public class AdminController
 		try {
 			result = adminService.login(admin);
 		}catch (Exception e) {
-			return RespBean.unprocessable("管理员登录失败");
+			return RespBean.unprocessable("管理员登录失败"+e.getMessage());
 		}
 		if(result) {
 			return RespBean.ok("管理员登录成功");

@@ -12,6 +12,7 @@ public class User {
     private String userId;
     private String password;
     private Integer status=1;
+    private String head_address = "address";
 
     public User(){}
 

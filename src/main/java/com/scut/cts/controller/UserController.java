@@ -20,12 +20,12 @@ public class UserController
         try {
             result = userService.register(user);
         }catch (Exception e) {
-            return RespBean.unprocessable("注册失败"+e.getMessage());
+            return RespBean.unprocessable("注册失败"+e.getMessage(),user);
         }
         if(result) {
             return RespBean.created("注册成功",user);
         }
-        return RespBean.unprocessable("注册失败");
+        return RespBean.unprocessable("注册失败",user);
     }
 
     @PostMapping("/login")
@@ -44,7 +44,7 @@ public class UserController
     }
 
     @PutMapping("/{userId}")
-    public RespBean updateUser(@RequestParam String userId, @RequestParam String password) {
+    public RespBean updateUser(@PathVariable String userId, @RequestParam String password) {
         User user = new User(userId, password);
         boolean result;
         try {

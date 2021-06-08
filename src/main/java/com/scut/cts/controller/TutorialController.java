@@ -37,7 +37,7 @@ public class TutorialController {
     }
 
     @PutMapping("/modify/{tutoId}")
-    public RespBean updateTutorial(@RequestParam Integer tutoId, @RequestParam String content) {
+    public RespBean updateTutorial(@PathVariable Integer tutoId, @RequestParam String content) {
         Tutorial tutorial = new Tutorial(tutoId, content);
         boolean result;
         try {
@@ -52,7 +52,7 @@ public class TutorialController {
     }
 
     @DeleteMapping("/delete/{tutoId}")
-    public RespBean deleteTutorial(@RequestParam Integer tutoId) {
+    public RespBean deleteTutorial(@PathVariable Integer tutoId) {
         boolean result;
         try {
             result = tutorialService.deleteTutorial(tutoId);
@@ -72,7 +72,7 @@ public class TutorialController {
     }
 
     @GetMapping("/second/{titleNum}")
-    public RespBean getTitle(@RequestParam Double titleNum) {
+    public RespBean getTitle(@PathVariable Double titleNum) {
         List<String> titleList = tutorialService.getTitle(titleNum);
         return RespBean.ok("二级标题获取成功",new TitleList(titleList));
     }
@@ -83,9 +83,9 @@ public class TutorialController {
         return RespBean.ok("教程获取成功",tutorial);
     }
 
-    @GetMapping("/{totuId}/commentList/{page}/{pageSize}")
-    public RespBean getComments(@RequestParam Integer tutoId, @RequestParam Integer page,
-                                @RequestParam Integer pageSize) {
+    @GetMapping("/{tutoId}/commentList/{page}/{pageSize}")
+    public RespBean getComments(@PathVariable Integer tutoId, @PathVariable Integer page,
+                                @PathVariable Integer pageSize) {
         PageHelper.startPage(page,pageSize);
         List<Comment> commentList = commentService.getComments(tutoId);
         return RespBean.ok("获取用户评论成功",new CommentList(commentList));
