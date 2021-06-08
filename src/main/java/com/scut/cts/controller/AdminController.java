@@ -33,7 +33,7 @@ public class AdminController
 	}
 
 	@PutMapping("/adminId/{AdminId}")
-	public RespBean updateAdmin(@RequestParam String AdminId, @RequestParam String password) {
+	public RespBean updateAdmin(@PathVariable String AdminId, @RequestParam String password) {
 		Admin admin = new Admin(AdminId,password);
 		boolean result;
 		try {
