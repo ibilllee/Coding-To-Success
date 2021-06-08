@@ -522,7 +522,7 @@ json
 
 #### 12.2修改测试数据
 
-- 请求路径：tutorial/modifyData/dataId
+- 请求路径：tutorial/modifyData/:dataId/:probId
 - 请求方法：put
 - 请求参数
 
@@ -531,6 +531,7 @@ json
 | dataId | 测试数据的id              | 不能为空 |
 | in     | 测试数据的输入数据 字符串 | 不能为空 |
 | out    | 测试数据的输出数据 字符串 | 不能为空 |
+| probId | 测试数据属于的问题的id    | 不能为空 |
 
 - 响应数据
 
@@ -1025,7 +1026,7 @@ json
 
 #### 20.2 删除测试数据（批量删除）
 
-- 请求路径：data/delete/:dataIds
+- 请求路径：data/delete/:dataIds/:probId
 
 - 请求方法：delete
 
@@ -1034,11 +1035,13 @@ json
   | 参数名  | 参数说明                                                     | 备注 |
     | ------- | ------------------------------------------------------------ | ---- |
   | dataIds | 测试数据Id(多个测试数据Id组合而成)例如删除id为1，2，3的测试数据，那么dataIds是1&2&3 | 非空 |
+  | probId  | 问题ID                                                       | 非空 |
 
   具体请求参数格式如下:
 
   ```json
   {
+      "probId":'1',
       "dataIds":'1&2&3'
   }
   ```
