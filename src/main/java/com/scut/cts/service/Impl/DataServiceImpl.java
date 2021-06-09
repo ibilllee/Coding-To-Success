@@ -4,9 +4,11 @@ import com.scut.cts.mapper.DataMapper;
 import com.scut.cts.pojo.Data;
 import com.scut.cts.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DataServiceImpl implements DataService {
     @Autowired
     private DataMapper dataMapper;
@@ -17,8 +19,8 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public Data selectDataByDataId(Integer dataId) {
-        return dataMapper.selectDataByDataId(dataId);
+    public Data selectDataByDataId(Integer probId, Integer dataId) {
+        return dataMapper.selectDataByDataId(probId, dataId);
     }
 
     @Override
@@ -28,14 +30,14 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public boolean updateData(Data data) {
-        int id = dataMapper.selectDataByDataId(data.getDataId()).getId();
+        int id = dataMapper.selectDataByDataId(data.getDataProbId(), data.getDataId()).getId();
         data.setId(id);
         return dataMapper.updateByPrimaryKeySelective(data)==1;
     }
 
     @Override
-    public boolean deleteDataByDataId(Integer dataId) {
-        return dataMapper.deleteByDataId(dataId)==1;
+    public boolean deleteDataByDataId(Integer probId, Integer dataId) {
+        return dataMapper.deleteByDataId(probId, dataId)==1;
     }
 
     @Override

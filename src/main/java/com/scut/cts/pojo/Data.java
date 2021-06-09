@@ -3,8 +3,10 @@ package com.scut.cts.pojo;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @lombok.Data
+@Table(name = "data")
 public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
