@@ -3,12 +3,16 @@ package com.scut.cts.controller;
 import com.scut.cts.pojo.Data;
 import com.scut.cts.pojo.RespBean;
 import com.scut.cts.service.DataService;
+import com.scut.cts.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +23,8 @@ import java.util.List;
 public class DataController {
     @Autowired
     private DataService dataService;
+    @Autowired
+    private RestTemplate restTemplate;
 
     @PostMapping("add")
     public RespBean addData(@RequestParam Integer probId, DataList dataList) {
@@ -33,6 +39,21 @@ public class DataController {
                 return RespBean.unprocessable("数据添加失败");
             }
         }
+
+        String url = "http://localhost:8081/problems";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("probId", String.valueOf(probId));
+        map.add("dataList", String.valueOf(dataList));
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+        ResponseEntity<String> response = null;
+        try {
+            response = restTemplate.postForEntity(url, request, String.class);
+        }catch (Exception e) {
+            return RespBean.unprocessable("数据转发失败"+e.getMessage());
+        }
         return RespBean.ok("数据添加成功");
     }
 
@@ -46,6 +67,19 @@ public class DataController {
                 return RespBean.unprocessable("数据删除失败"+e.getMessage());
             }
         }
+
+        String url = "http://localhost:8081/problems";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("probId",String.valueOf(probId));
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+        try {
+            restTemplate.delete(url, request, String.class);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         return RespBean.ok("数据删除成功");
     }
 
@@ -71,35 +105,7 @@ public class DataController {
     }
 }
 
-@lombok.Data
-class DataNode {
-    private Integer dataId;
-    private String in;
-    private String out;
 
-    public DataNode() {}
 
-    public DataNode(Integer dataId, String in, String out) {
-        this.dataId = dataId;
-        this.in = in;
-        this.out = out;
-    }
-}
 
-@lombok.Data
-class AddDataNode {
-    private String in;
-    private String out;
 
-    public AddDataNode() {}
-
-    public AddDataNode(String in, String out) {
-        this.in = in;
-        this.out = out;
-    }
-}
-
-@lombok.Data
-class DataList {
-    private List<AddDataNode> dataList;
-}

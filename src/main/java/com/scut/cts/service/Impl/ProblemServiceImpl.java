@@ -3,6 +3,7 @@ package com.scut.cts.service.Impl;
 import com.scut.cts.mapper.AnswerMapper;
 import com.scut.cts.mapper.ProblemMapper;
 import com.scut.cts.pojo.Problem;
+import com.scut.cts.service.DataService;
 import com.scut.cts.service.ProblemService;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class ProblemServiceImpl implements ProblemService {
     private ProblemMapper problemMapper;
     @Autowired
     private AnswerMapper answerMapper;
+    @Autowired
+    private DataService dataService;
 
     @Override
     public Problem selectProblem(Problem problem) {
@@ -35,6 +38,7 @@ public class ProblemServiceImpl implements ProblemService {
     @Override
     public boolean deleteProblem(Problem problem) {
         answerMapper.deleteByProbId(problem);
+        dataService.deleteDataByProbId(problem.getProbId());
         return problemMapper.deleteByPrimaryKey(problem)==1;
     }
 
