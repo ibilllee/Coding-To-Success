@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
     private Integer probId;
     private Integer dataId;
     private String dataIn;
