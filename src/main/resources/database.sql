@@ -78,12 +78,12 @@ CREATE TABLE IF NOT EXISTS answer
 CREATE TABLE IF NOT EXISTS data
 (
     id INT PRIMARY KEY auto_increment,
-    prob_id INT,
+    data_prob_id INT,
     data_id INT,
     data_in TEXT,
     data_out TEXT,
 
-    FOREIGN KEY (prob_id)
+    FOREIGN KEY (data_prob_id)
     REFERENCES problem (prob_id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT

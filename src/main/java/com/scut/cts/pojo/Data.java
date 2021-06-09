@@ -9,7 +9,7 @@ public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer probId;
+    private Integer dataProbId;
     private Integer dataId;
     private String dataIn;
     private String dataOut;
@@ -17,7 +17,7 @@ public class Data {
     public Data() {}
 
     public Data(Integer probId, Integer dataId, String dataIn, String dataOut) {
-        this.probId = probId;
+        this.dataProbId = probId;
         this.dataId = dataId;
         this.dataIn = dataIn;
         this.dataOut = dataOut;
