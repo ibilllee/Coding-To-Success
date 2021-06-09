@@ -5,6 +5,7 @@ import com.scut.cts.pojo.Comment;
 import com.scut.cts.pojo.RespBean;
 import com.scut.cts.pojo.Tutorial;
 import com.scut.cts.service.CommentService;
+import com.scut.cts.service.DataService;
 import com.scut.cts.service.TutorialService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class TutorialController {
     private TutorialService tutorialService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private DataService dataService;
 
     @PostMapping("/add")
     public RespBean addTutorial(@RequestParam String titleContent, @RequestParam String content,
@@ -113,6 +116,24 @@ public class TutorialController {
 //        String body = response.getBody();
 //        return RespBean.ok("数据已转发",body);
 //    }
+    @PutMapping("/modifyData/{dataId}/{probId}")
+    public RespBean updateData(@PathVariable Integer dataId, @PathVariable Integer probId,
+                               DataList dataList) {
+        List<AddDataNode> updateList = dataList.getDataList();
+        for (int i = 0; i < updateList.size(); i++) {
+            com.scut.cts.pojo.Data newData = new com.scut.cts.pojo.Data();
+            try {
+                com.scut.cts.pojo.Data oldData = dataService.selectDataByDataId(probId,dataId);
+                newData.setId(oldData.getId());
+                newData.setDataIn(updateList.get(i).getIn());
+                newData.setDataOut(updateList.get(i).getOut());
+                dataService.updateData(newData);
+            }catch (Exception e) {
+                return RespBean.unprocessable("数据修改失败"+e.getMessage(),newData);
+            }
+        }
+        return RespBean.ok("数据修改成功");
+    }
 }
 
 @Data

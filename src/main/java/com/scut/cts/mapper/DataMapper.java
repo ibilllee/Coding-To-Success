@@ -19,4 +19,7 @@ public interface DataMapper extends Mapper<Data> {
 
     @Delete("DELETE FROM data WHERE data_prob_id = #{probId}")
     public int deleteByProbId(Integer probId);
+
+    @Select("SELECT MAX(data_id) FROM data WHERE data_prob_id = #{probId}")
+    public int selectMaxDataIdInProbId(Integer probId);
 }

@@ -30,8 +30,6 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public boolean updateData(Data data) {
-        int id = dataMapper.selectDataByDataId(data.getDataProbId(), data.getDataId()).getId();
-        data.setId(id);
         return dataMapper.updateByPrimaryKeySelective(data)==1;
     }
 
@@ -43,5 +41,10 @@ public class DataServiceImpl implements DataService {
     @Override
     public boolean deleteDataByProbId(Integer probId) {
         return dataMapper.deleteByProbId(probId)==1;
+    }
+
+    @Override
+    public int selectMaxDataIdInProbId(Integer probId) {
+        return dataMapper.selectMaxDataIdInProbId(probId);
     }
 }

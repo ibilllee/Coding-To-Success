@@ -20,6 +20,22 @@ public class DataController {
     @Autowired
     private DataService dataService;
 
+    @PostMapping("add")
+    public RespBean addData(@RequestParam Integer probId, DataList dataList) {
+        List<AddDataNode> addList = dataList.getDataList();
+        for (int i = 0; i < addList.size(); i++) {
+            Data data = null;
+            try {
+                data = new Data(probId,dataService.selectMaxDataIdInProbId(probId)+1,
+                        addList.get(i).getIn(), addList.get(i).getOut());
+                dataService.addData(data);
+            }catch (Exception e) {
+                return RespBean.unprocessable("数据添加失败");
+            }
+        }
+        return RespBean.ok("数据添加成功");
+    }
+
     @DeleteMapping("delete/{dataIds}/{probId}")
     public RespBean deleteData(@PathVariable String dataIds, @PathVariable Integer probId) {
         String[] idsArray = dataIds.split("&");
@@ -27,7 +43,7 @@ public class DataController {
             try {
                 dataService.deleteDataByDataId(probId,Integer.parseInt(idsArray[i]));
             }catch (Exception e) {
-                return RespBean.unprocessable("删除数据失败"+e.getMessage());
+                return RespBean.unprocessable("数据删除失败"+e.getMessage());
             }
         }
         return RespBean.ok("数据删除成功");
@@ -43,7 +59,7 @@ public class DataController {
         }
         for (int i = 0; i < dataList.size(); i++) {
             if(dataList.get(i) == null) {
-                return RespBean.unprocessable("获取数据失败",dataList.get(i));
+                return RespBean.unprocessable("数据获取失败",dataList.get(i));
             }
         }
         List<DataNode> dataNodeList = new ArrayList<>();
@@ -68,4 +84,22 @@ class DataNode {
         this.in = in;
         this.out = out;
     }
+}
+
+@lombok.Data
+class AddDataNode {
+    private String in;
+    private String out;
+
+    public AddDataNode() {}
+
+    public AddDataNode(String in, String out) {
+        this.in = in;
+        this.out = out;
+    }
+}
+
+@lombok.Data
+class DataList {
+    private List<AddDataNode> dataList;
 }
