@@ -75,6 +75,20 @@ CREATE TABLE IF NOT EXISTS answer
         ON UPDATE RESTRICT
 );
 
+CREATE TABLE IF NOT EXISTS data
+(
+    id INT PRIMARY KEY auto_increment,
+    prob_id INT,
+    data_id INT,
+    data_in TEXT,
+    data_out TEXT,
+
+    FOREIGN KEY (prob_id)
+    REFERENCES problem (prob_id)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT
+);
+
 CREATE TABLE IF NOT EXISTS bulletin
 (
     bulletin_id INT AUTO_INCREMENT PRIMARY KEY,

@@ -8,6 +8,12 @@ import com.scut.cts.service.CommentService;
 import com.scut.cts.service.TutorialService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -90,6 +96,23 @@ public class TutorialController {
         List<Comment> commentList = commentService.getComments(tutoId);
         return RespBean.ok("获取用户评论成功",new CommentList(commentList));
     }
+
+//    @PutMapping("/modifyData/{probId}")
+//    public RespBean transformData(@PathVariable int probId, @RequestParam String data) {
+//        String url = "http://localhost:8081/problems";
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+//        map.add("probId", String.valueOf(probId));
+//        map.add("in",String.valueOf(in));
+//        map.add("out",String.valueOf(out));
+//
+//        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+//        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+//
+//        String body = response.getBody();
+//        return RespBean.ok("数据已转发",body);
+//    }
 }
 
 @Data
