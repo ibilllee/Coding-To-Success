@@ -1,8 +1,6 @@
-package com.scut.cts.pojo;
+package com.scut.cts.dto;
 
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class RespBean {

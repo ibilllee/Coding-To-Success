@@ -1,8 +1,11 @@
 package com.scut.cts.controller;
 
 import com.github.pagehelper.PageHelper;
+import com.scut.cts.dto.CommentList;
+import com.scut.cts.dto.TitleList;
 import com.scut.cts.pojo.Comment;
-import com.scut.cts.pojo.RespBean;
+import com.scut.cts.dto.RespBean;
+import com.scut.cts.dto.TitleContent;
 import com.scut.cts.pojo.Tutorial;
 import com.scut.cts.service.CommentService;
 import com.scut.cts.service.DataService;
@@ -13,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -80,13 +82,13 @@ public class TutorialController {
 
     @GetMapping("/first")
     public RespBean getTitles() {
-        List<String> titleList = tutorialService.getTitle(null);
+        List<TitleContent> titleList = tutorialService.getTitle(null);
         return RespBean.ok("一级标题获取成功",new TitleList(titleList));
     }
 
     @GetMapping("/second/{titleNum}")
     public RespBean getTitle(@PathVariable Double titleNum) {
-        List<String> titleList = tutorialService.getTitle(titleNum);
+        List<TitleContent> titleList = tutorialService.getTitle(titleNum);
         return RespBean.ok("二级标题获取成功",new TitleList(titleList));
     }
 
@@ -155,20 +157,3 @@ public class TutorialController {
     }
 }
 
-@Data
-class TitleList {
-    private List<String> titleList;
-
-    public TitleList(List<String> titleList) {
-        this.titleList = titleList;
-    }
-}
-
-@Data
-class CommentList {
-    private List<Comment> commentList;
-
-    public CommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
-}

@@ -1,7 +1,5 @@
 package com.scut.cts.transfer;
 
-import com.scut.cts.data.DataList;
-import com.scut.cts.pojo.RespBean;
 import lombok.Data;
 import org.springframework.web.bind.annotation.*;
 

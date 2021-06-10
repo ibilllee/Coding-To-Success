@@ -2,10 +2,11 @@ package com.scut.cts.service.Impl;
 
 import com.scut.cts.mapper.CommentMapper;
 import com.scut.cts.mapper.UserMapper;
+import com.scut.cts.dto.StatusAndToken;
 import com.scut.cts.pojo.User;
-import com.scut.cts.service.CommentService;
 import com.scut.cts.service.UserService;
 import com.scut.cts.utils.MD5Utils;
+import com.scut.cts.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,21 +22,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean register(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		user.setPassword(MD5Utils.EncoderByMd5(user.getPassword()));
+		user.setPassword(MD5Utils.encodeByMd5(user.getPassword()));
 		return userMapper.insert(user)==1;
 	}
 
 	@Override
-	public boolean login(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		user.setPassword(MD5Utils.EncoderByMd5(user.getPassword()));
-		User result = userMapper.selectOne(user);
-		if(result == null)return false;
-		return true;
+	public StatusAndToken login(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		String password = user.getPassword();
+		user.setPassword(MD5Utils.encodeByMd5(user.getPassword()));
+		User result = userMapper.selectByUserIdAndPassword(user);
+		if(result == null)	return null;
+		return new StatusAndToken(result.getStatus(),TokenUtils.getToken(user.getUserId(),password));
 	}
 
 	@Override
 	public boolean updateUser(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		user.setPassword(MD5Utils.EncoderByMd5(user.getPassword()));
+		user.setPassword(MD5Utils.encodeByMd5(user.getPassword()));
 		return userMapper.updateByPrimaryKeySelective(user)==1;
 	}
 

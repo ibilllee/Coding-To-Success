@@ -2,9 +2,8 @@ package com.scut.cts.controller;
 
 import com.scut.cts.pojo.Code;
 import com.scut.cts.pojo.UserCode;
-import com.scut.cts.pojo.RespBean;
+import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.CodeService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -68,7 +67,7 @@ public class CodeController
 			return RespBean.unprocessable("代码获取失败！"+e.getMessage());
 		}
 		if(code.getCode()!=null)
-		return RespBean.ok("代码获取成功！",code.getCode());
+		return RespBean.ok("代码获取成功！",new com.scut.cts.dto.Code(code.getCode()));
 		return RespBean.unprocessable("代码获取失败！缓存中没有指定代码");
 	}
 }

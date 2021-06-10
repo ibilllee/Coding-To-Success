@@ -1,7 +1,8 @@
 package com.scut.cts.controller;
 
+import com.scut.cts.dto.BulletinList;
 import com.scut.cts.pojo.Bulletin;
-import com.scut.cts.pojo.RespBean;
+import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.BulletinService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +65,3 @@ public class BulletinController
 	}
 }
 
-@Data
-class BulletinList{
-	private List<Bulletin> bulletinList;
-
-	public BulletinList(List<Bulletin> bulletinList) {
-		this.bulletinList = bulletinList;
-	}
-}

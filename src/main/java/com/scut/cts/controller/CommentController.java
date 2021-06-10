@@ -1,7 +1,7 @@
 package com.scut.cts.controller;
 
 import com.scut.cts.pojo.Comment;
-import com.scut.cts.pojo.RespBean;
+import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

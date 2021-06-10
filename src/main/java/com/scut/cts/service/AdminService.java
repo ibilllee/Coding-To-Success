@@ -6,6 +6,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 public interface AdminService {
-    public boolean login(Admin admin) throws UnsupportedEncodingException, NoSuchAlgorithmException;
+    public String login(Admin admin) throws UnsupportedEncodingException, NoSuchAlgorithmException;
     public boolean updateAdmin(Admin admin) throws UnsupportedEncodingException, NoSuchAlgorithmException;
 }

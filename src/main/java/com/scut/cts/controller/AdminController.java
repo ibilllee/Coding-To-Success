@@ -1,7 +1,9 @@
 package com.scut.cts.controller;
 
+import com.scut.cts.dto.AdminIdAndPassword;
+import com.scut.cts.dto.Token;
 import com.scut.cts.pojo.Admin;
-import com.scut.cts.pojo.RespBean;
+import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.AdminService;
 import com.scut.cts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,14 @@ public class AdminController
 	@PostMapping("/admin/login")
 	public RespBean login(@RequestParam String adminId, @RequestParam String password) {
 		Admin admin = new Admin(adminId, password);
-		boolean result;
+		String token;
 		try {
-			result = adminService.login(admin);
+			token = adminService.login(admin);
 		}catch (Exception e) {
 			return RespBean.unprocessable("管理员登录失败"+e.getMessage());
 		}
-		if(result) {
-			return RespBean.ok("管理员登录成功");
+		if(token!=null) {
+			return RespBean.ok("管理员登录成功",new Token(token));
 		}
 		return RespBean.unprocessable("管理员登录失败");
 	}
@@ -42,7 +44,7 @@ public class AdminController
 			return RespBean.unprocessable("密码修改失败"+e.getMessage());
 		}
 		if(result) {
-			return RespBean.ok("密码修改成功");
+			return RespBean.ok("密码修改成功",new AdminIdAndPassword(AdminId,password));
 		}
 		return RespBean.unprocessable("密码修改失败");
 	}

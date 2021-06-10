@@ -4,6 +4,7 @@ import com.scut.cts.mapper.AdminMapper;
 import com.scut.cts.pojo.Admin;
 import com.scut.cts.service.AdminService;
 import com.scut.cts.utils.MD5Utils;
+import com.scut.cts.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +17,17 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     @Override
-    public boolean login(Admin admin) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        admin.setPassword(MD5Utils.EncoderByMd5(admin.getPassword()));
+    public String login(Admin admin) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        String password = admin.getPassword();
+        admin.setPassword(MD5Utils.encodeByMd5(admin.getPassword()));
         Admin result = adminMapper.selectOne(admin);
-        if(result == null)return false;
-        return true;
+        if(result == null) return null;
+        return TokenUtils.getToken(admin.getAdminId(),password);
     }
 
     @Override
     public boolean updateAdmin(Admin admin) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        admin.setPassword(MD5Utils.EncoderByMd5(admin.getPassword()));
+        admin.setPassword(MD5Utils.encodeByMd5(admin.getPassword()));
         return adminMapper.updateByPrimaryKeySelective(admin)==1;
     }
 }

@@ -8,4 +8,7 @@ import tk.mybatis.mapper.common.Mapper;
 public interface UserMapper extends Mapper<User> {
 	@Select("SELECT status FROM user WHERE user_id = #{userId}")
 	int selectStatusByUserId(String userId);
+
+	@Select("SELECT * FROM user WHERE user_id = #{userId} and password = #{password}")
+	User selectByUserIdAndPassword(User user);
 }

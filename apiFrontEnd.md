@@ -57,7 +57,8 @@
 ```json
 {
   "data": {
-    "status": 1
+    "status": 1,
+    "token": "token"
   },
   "meta": {
     "msg": "用户登录成功",
@@ -87,7 +88,9 @@
 
 ```json
 {
-  "data": null,
+  "data": {
+    "token": "token"
+  },
   "meta": {
     "msg": "管理员登录成功",
     "status": 200
@@ -244,7 +247,7 @@
 ```json
 {
   "data": {
-    "url":'xxxxxx'
+    "url":"xxxxxx"
   },
   "meta": {
     "msg": "上传成功",
@@ -1045,8 +1048,8 @@ json
 
   ```json
   {
-      "probId":'1',
-      "dataIds":'1&2&3'
+      "probId":"1",
+      "dataIds":"1&2&3"
   }
   ```
 

@@ -1,10 +1,8 @@
 package com.scut.cts.service.Impl;
 
-import com.scut.cts.mapper.AnswerMapper;
-import com.scut.cts.mapper.CommentMapper;
-import com.scut.cts.mapper.ProblemMapper;
-import com.scut.cts.mapper.TutorialMapper;
+import com.scut.cts.mapper.*;
 import com.scut.cts.pojo.Problem;
+import com.scut.cts.dto.TitleContent;
 import com.scut.cts.pojo.Tutorial;
 import com.scut.cts.service.TutorialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,8 @@ public class TutorialServiceImpl implements TutorialService {
     private CommentMapper commentMapper;
     @Autowired
     private AnswerMapper answerMapper;
+    @Autowired
+    private TutorialTitleMapper tutorialTitleMapper;
 
     @Override
     public boolean addTutorial(Tutorial tutorial) {
@@ -69,15 +69,14 @@ public class TutorialServiceImpl implements TutorialService {
     }
 
     @Override
-    public List<String> getTitle(Double titleNum) {
-        List<String> result;
+    public List<TitleContent> getTitle(Double titleNum) {
+        List<TitleContent> result;
         if(titleNum == null) {
-            result = tutorialMapper.selectTitles();
+            result = tutorialTitleMapper.selectTitlesInfo();
         } else {
-            result = tutorialMapper.selectSubTitles(titleNum);
+            result=tutorialTitleMapper.selectSubTitlesInfo(titleNum);
         }
         return result;
     }
-
 
 }

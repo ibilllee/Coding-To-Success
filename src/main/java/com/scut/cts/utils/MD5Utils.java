@@ -7,7 +7,7 @@ import java.util.Base64;
 
 public class MD5Utils
 {
-	public static String EncoderByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public static String encodeByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		return new String(Base64.getEncoder().encode(MessageDigest.getInstance("MD5").digest(str.getBytes("utf-8"))));
 	}
 }

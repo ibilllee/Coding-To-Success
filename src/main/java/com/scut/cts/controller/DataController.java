@@ -1,7 +1,7 @@
 package com.scut.cts.controller;
 
 import com.scut.cts.pojo.Data;
-import com.scut.cts.pojo.RespBean;
+import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.DataService;
 import com.scut.cts.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
