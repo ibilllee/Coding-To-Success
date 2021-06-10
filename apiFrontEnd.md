@@ -993,7 +993,7 @@ json
 
 #### 20.1 添加测试数据（批量增加）
 
-- 请求路径：data/add/:probId
+- 请求路径：data/add
 
 - 请求方法：post
 
@@ -1036,7 +1036,7 @@ json
 
 #### 20.2 删除测试数据（批量删除）
 
-- 请求路径：data/delete/:dataIds/:probId
+- 请求路径：data/delete/:dataIds
 
 - 请求方法：delete
 
@@ -1104,7 +1104,7 @@ json
 
 #### 20.4修改测试数据
 
-- 请求路径：data/modify/:dataId/:probId
+- 请求路径：data/modify/:dataId
 - 请求方法：put
 - 请求参数
 
