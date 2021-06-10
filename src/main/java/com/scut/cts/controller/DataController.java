@@ -39,7 +39,7 @@ public class DataController {
             }
         }
 
-        String url = "http://localhost:8081/problems";
+        String url = "http://localhost/problems";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -67,7 +67,7 @@ public class DataController {
             }
         }
 
-        String url = "http://localhost:8081/problems";
+        String url = "http://localhost/problems";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
