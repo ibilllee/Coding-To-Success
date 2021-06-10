@@ -58,7 +58,9 @@
 {
   "data": {
     "status": 1,
-    "token": "token"
+    "token":'token值',
+    "userId":1,
+    "avatar":'xxxx'
   },
   "meta": {
     "msg": "用户登录成功",
@@ -88,9 +90,7 @@
 
 ```json
 {
-  "data": {
-    "token": "token"
-  },
+  "data": null,
   "meta": {
     "msg": "管理员登录成功",
     "status": 200
@@ -237,6 +237,7 @@
 | 参数名 | 参数说明       | 备注     |
 | ------ | -------------- | -------- |
 | avatar | 头像图片的文件 | 不能为空 |
+| userId | 用户ID         | 不能为空 |
 
 - 响应数据
 
@@ -247,10 +248,10 @@
 ```json
 {
   "data": {
-    "url":"xxxxxx"
+    "url":'xxxxxx'
   },
   "meta": {
-    "msg": "上传成功",
+    "msg": "信息修改成功",
     "status": 200
   }
 }
@@ -1048,8 +1049,8 @@ json
 
   ```json
   {
-      "probId":"1",
-      "dataIds":"1&2&3"
+      "probId":'1',
+      "dataIds":'1&2&3'
   }
   ```
 
