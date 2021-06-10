@@ -326,18 +326,22 @@
   "data": {
     "dataTotal":30,
     "pageTotal":15,
-    "comment": [
+    "commentList": [
       {
         "commentUserId": 123,
+        "commentAvatar":"xxx",
         "content": "评论测试内容",
         "replyTo": 1,
+        "replyAvatar":"xxx",
         "replyOrder": 1,
         "create_time": "2021-06-01 19:42:23"
       },
       {
         "commentUserId": 231,
+        "commentAvatar":"xxx",
         "content": "评论测试内容",
         "replyTo": 1,
+        "replyAvatar":"xxx",
         "replyOrder": 2,
         "create_time": "2021-06-01 19:44:23"
       }
