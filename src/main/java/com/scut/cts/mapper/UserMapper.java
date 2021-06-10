@@ -11,4 +11,10 @@ public interface UserMapper extends Mapper<User> {
 
 	@Select("SELECT * FROM user WHERE user_id = #{userId} and password = #{password}")
 	User selectByUserIdAndPassword(User user);
+
+	@Update("UPDATE user SET head_address = #{headAddress} WHERE user_id = #{userId}")
+	int updateHeadAddressByUserId(String headAddress,String userId);
+
+	@Select("SELECT head_address FROM user WHERE user_id = #{userId}")
+	String selectHeadAddressByUserId(String userId);
 }

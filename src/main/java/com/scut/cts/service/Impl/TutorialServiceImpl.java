@@ -4,6 +4,7 @@ import com.scut.cts.mapper.*;
 import com.scut.cts.pojo.Problem;
 import com.scut.cts.dto.TitleContent;
 import com.scut.cts.pojo.Tutorial;
+import com.scut.cts.service.CommentService;
 import com.scut.cts.service.TutorialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class TutorialServiceImpl implements TutorialService {
     private AnswerMapper answerMapper;
     @Autowired
     private TutorialTitleMapper tutorialTitleMapper;
+    @Autowired
+    private CommentService commentService;
 
     @Override
     public boolean addTutorial(Tutorial tutorial) {
@@ -64,7 +67,8 @@ public class TutorialServiceImpl implements TutorialService {
     public Tutorial getTutorial(Integer tutorialId) {
         Tutorial result = tutorialMapper.selectByPrimaryKey(tutorialId);
         result.setProblemList(problemMapper.selectProblemByTutoId(tutorialId));
-        result.setCommentList(commentMapper.selectByTutoId(tutorialId));
+        //result.setCommentList(commentMapper.selectByTutoId(tutorialId));
+        result.setCommentList(commentService.getComments(tutorialId));
         return result;
     }
 

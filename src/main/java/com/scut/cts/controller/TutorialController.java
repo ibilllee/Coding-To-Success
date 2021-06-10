@@ -1,11 +1,8 @@
 package com.scut.cts.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.scut.cts.dto.CommentList;
-import com.scut.cts.dto.TitleList;
+import com.scut.cts.dto.*;
 import com.scut.cts.pojo.Comment;
-import com.scut.cts.dto.RespBean;
-import com.scut.cts.dto.TitleContent;
 import com.scut.cts.pojo.Tutorial;
 import com.scut.cts.service.CommentService;
 import com.scut.cts.service.DataService;
@@ -93,7 +90,7 @@ public class TutorialController {
     }
 
     @GetMapping("/view")
-    public RespBean getTutorials(@RequestParam Integer tutoId) {
+    public RespBean getTutorials(@RequestParam(value = "tutoId") int tutoId) {
         Tutorial tutorial = tutorialService.getTutorial(tutoId);
         return RespBean.ok("教程获取成功",tutorial);
     }
@@ -102,7 +99,7 @@ public class TutorialController {
     public RespBean getComments(@PathVariable Integer tutoId, @PathVariable Integer page,
                                 @PathVariable Integer pageSize) {
         PageHelper.startPage(page,pageSize);
-        List<Comment> commentList = commentService.getComments(tutoId);
+        List<CommentWithAvatar> commentList = commentService.getComments(tutoId);
         return RespBean.ok("获取用户评论成功",new CommentList(commentList));
     }
 
@@ -139,7 +136,7 @@ public class TutorialController {
             }
         }
 
-        String url = "http://localhost:8081/problems";
+        String url = "http://localhost/problems";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

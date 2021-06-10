@@ -1,5 +1,6 @@
 package com.scut.cts.pojo;
 
+import com.scut.cts.dto.CommentWithAvatar;
 import lombok.Data;
 
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class Tutorial {
     private String titleContent;
     private Double titleNum;
     private String content;
-    private List<Comment> commentList;
+    private List<CommentWithAvatar> commentList;
     private List<Problem> problemList;
 
     public Tutorial() {}
@@ -37,7 +38,7 @@ public class Tutorial {
         this.titleNum = titleNum;
     }
 
-    public void setCommentList(List<Comment> commentList) {
+    public void setCommentList(List<CommentWithAvatar> commentList) {
         this.commentList = commentList;
     }
 

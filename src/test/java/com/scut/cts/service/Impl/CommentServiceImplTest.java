@@ -1,5 +1,6 @@
 package com.scut.cts.service.Impl;
 
+import com.scut.cts.dto.CommentWithAvatar;
 import com.scut.cts.pojo.Comment;
 import com.scut.cts.service.CommentService;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class CommentServiceImplTest {
 
 	@Test
 	public void getComment(){
-		List<Comment> comments = commentService.getComments(1);
+		List<CommentWithAvatar> comments = commentService.getComments(1);
 		System.out.println(comments);
 	}
 }

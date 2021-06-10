@@ -6,8 +6,8 @@ import java.util.List;
 
 public class CommentList
 {
-	private List<Comment> commentList;
-	public CommentList(List<Comment> commentList) {
+	private List<CommentWithAvatar> commentList;
+	public CommentList(List<CommentWithAvatar> commentList) {
 		this.commentList = commentList;
 	}
 }

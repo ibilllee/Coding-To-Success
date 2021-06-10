@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: database
+    active: database, host
   redis:
     host: 127.0.0.1
     port: 6379
@@ -22,3 +22,6 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
+project:
+  address: 8.135.61.132/cts/
