@@ -24,4 +24,5 @@ mybatis:
     map-underscore-to-camel-case: true
 
 project:
-  address: 8.135.61.132/cts/
+  my-address: 8.135.61.132/cts/
+  judger-address: 192.168.50.16:28370/

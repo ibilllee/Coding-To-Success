@@ -3,7 +3,7 @@ package com.scut.cts.service.Impl;
 import com.scut.cts.config.HostConfig;
 import com.scut.cts.mapper.CommentMapper;
 import com.scut.cts.mapper.UserMapper;
-import com.scut.cts.dto.StatusAndToken;
+import com.scut.cts.dto.UserWithAvatar;
 import com.scut.cts.pojo.User;
 import com.scut.cts.service.UserService;
 import com.scut.cts.utils.FileUtils;
@@ -32,12 +32,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public StatusAndToken login(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+	public UserWithAvatar login(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		String password = user.getPassword();
 		user.setPassword(MD5Utils.encodeByMd5(user.getPassword()));
 		User result = userMapper.selectByUserIdAndPassword(user);
 		if(result == null)	return null;
-		return new StatusAndToken(result.getStatus(),TokenUtils.getToken(user.getUserId(),password));
+		return new UserWithAvatar(result,TokenUtils.getToken(user.getUserId(),password));
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			return null;
 		}
-		return HostConfig.getAddress()+"Avatar/"+file.getName();
+		return HostConfig.getMyAddress()+"Avatar/"+file.getName();
 	}
 
 	@Override

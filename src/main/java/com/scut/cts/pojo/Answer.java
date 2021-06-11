@@ -12,4 +12,12 @@ public class Answer {
 	@Id
 	private Integer ansProbId;
 	private String content;
+
+	public Answer(Integer ansProbId, String content) {
+		this.ansProbId = ansProbId;
+		this.content = content;
+	}
+
+	public Answer() {
+	}
 }
