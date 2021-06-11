@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			return null;
 		}
-		return HostConfig.getAddress()+"Avatar/"+file.getName();
+		return HostConfig.getMyAddress()+"Avatar/"+file.getName();
 	}
 
 	@Override

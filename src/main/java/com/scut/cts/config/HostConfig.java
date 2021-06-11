@@ -2,19 +2,28 @@ package com.scut.cts.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 public class HostConfig
 {
-	private static String address;
+	private static String myAddress;
+	private static String judgerAddress;
 
-	@Value("${project.address}")
+	@Value("${project.my-address}")
 	public void setAddress(String address) {
-		HostConfig.address = address;
+		HostConfig.myAddress = address;
 	}
 
-	public static String getAddress() {
-		return address;
+	@Value("${project.judger-address}")
+	public void setJudgerAddress(String judgerAddress) {
+		HostConfig.judgerAddress = judgerAddress;
+	}
+
+	public static String getMyAddress() {
+		return myAddress;
+	}
+
+	public static String getJudgerAddress() {
+		return judgerAddress;
 	}
 }

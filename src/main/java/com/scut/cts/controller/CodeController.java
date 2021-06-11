@@ -1,5 +1,6 @@
 package com.scut.cts.controller;
 
+import com.scut.cts.config.HostConfig;
 import com.scut.cts.pojo.Code;
 import com.scut.cts.pojo.UserCode;
 import com.scut.cts.dto.RespBean;
@@ -29,7 +30,7 @@ public class CodeController
 							 @RequestParam(value = "probId") int probId) {
 		Code code = new Code(userCode, probId);
 
-		String url = "http://8.135.61.132:28370/judger";
+		String url = HostConfig.getJudgerAddress()+"judger";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

@@ -1,6 +1,7 @@
 package com.scut.cts.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.scut.cts.config.HostConfig;
 import com.scut.cts.pojo.Data;
 import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.DataService;
@@ -42,7 +43,7 @@ public class DataController {
             }
         }
 
-        String url = "http://8.135.61.132:28370/problem";
+        String url = HostConfig.getJudgerAddress()+ "problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -70,7 +71,7 @@ public class DataController {
             }
         }
 
-        String url = "ttp://8.135.61.132:28370/problem";
+        String url = HostConfig.getJudgerAddress()+"problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -133,7 +134,7 @@ public class DataController {
             return RespBean.unprocessable("修改失败"+e.getMessage(),newData);
         }
 
-        String url = "ttp://8.135.61.132:28370/problem";
+        String url = HostConfig.getJudgerAddress()+"problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

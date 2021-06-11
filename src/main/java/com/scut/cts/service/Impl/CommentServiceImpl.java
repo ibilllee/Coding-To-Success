@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService
 		ArrayList<CommentWithAvatar> commentWithAvatars = new ArrayList<>();
 		for (Comment comment : comments) {
 			CommentWithAvatar commentWithAvatar = new CommentWithAvatar(comment);
-			commentWithAvatar.setCommentAvatar(HostConfig.getAddress()+userMapper.selectHeadAddressByUserId(comment.getCommentUserId()));
+			commentWithAvatar.setCommentAvatar(HostConfig.getMyAddress()+userMapper.selectHeadAddressByUserId(comment.getCommentUserId()));
 			commentWithAvatars.add(commentWithAvatar);
 		}
 		return commentWithAvatars;
