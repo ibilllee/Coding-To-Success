@@ -16,5 +16,18 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerMapper.selectByPrimaryKey(probId);
 	}
 
+	@Override
+	public boolean addAnswer(Answer answer) {
+		return answerMapper.insert(answer)==1;
+	}
 
+	@Override
+	public boolean deleteAnswer(Integer probId) {
+		return answerMapper.deleteByPrimaryKey(probId)==1;
+	}
+
+	@Override
+	public boolean updateAnswer(Answer answer) {
+		return answerMapper.updateByPrimaryKey(answer)==1;
+	}
 }
