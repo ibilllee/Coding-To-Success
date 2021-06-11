@@ -2,17 +2,14 @@ package com.scut.cts.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.scut.cts.config.HostConfig;
-import com.scut.cts.dto.AddDataNode;
-import com.scut.cts.dto.DataList;
-import com.scut.cts.dto.DataNode;
 import com.scut.cts.pojo.Data;
 import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.DataService;
+import com.scut.cts.dto.*;
+import com.scut.cts.utils.RestClientUtils;
+import com.sun.tools.internal.ws.processor.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +26,9 @@ public class DataController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @PostMapping("/add")
-    public RespBean addData(@RequestParam Integer probId, DataList dataList) {
+    @PostMapping("/add/{probId}")
+    public RespBean addData(@PathVariable Integer probId, DataList dataList) {
+        List<Data> dataListBefore = dataService.selectDataByProbId(probId);
         List<AddDataNode> addList = dataList.getDataList();
         for (int i = 0; i < addList.size(); i++) {
             Data data = null;
@@ -45,25 +43,46 @@ public class DataController {
             }
         }
 
-        String url = HostConfig.getJudgerAddress()+ "problem";
+        String url = HostConfig.getJudgerAddress() + "problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("probId", String.valueOf(probId));
-        map.add("cases", String.valueOf(dataList));
 
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-        ResponseEntity<String> response = null;
-        try {
-            response = restTemplate.postForEntity(url, request, String.class);
-        }catch (Exception e) {
-            return RespBean.unprocessable("数据转发失败"+e.getMessage());
+        if(dataListBefore.size() == 0) {
+            map.add("cases", String.valueOf(dataList));
+
+            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+            ResponseEntity<String> response = null;
+            try {
+                response = restTemplate.postForEntity(url, request, String.class);
+            } catch (Exception e) {
+                return RespBean.unprocessable("数据转发失败" + e.getMessage());
+            }
+            String body = response.getBody();
+            if (!("true".equals(body.substring(10, 15)))) {
+                return RespBean.unprocessable("测试数据添加失败!", body);
+            }
+        }
+        else {
+            List<Data> dataListAfter = dataService.selectDataByProbId(probId);
+            map.add("cases",String.valueOf(dataListAfter));
+
+            String responseBody = null;
+            try {
+                responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, Response.class, map);
+            } catch (Exception e) {
+                return RespBean.unprocessable("数据转发失败" + e.getMessage());
+            }
+            if (!("true".equals(responseBody.substring(10, 15)))) {
+                return RespBean.unprocessable("测试数据添加失败!", responseBody);
+            }
         }
         return RespBean.ok("测试数据添加成功!");
     }
 
-    @DeleteMapping("/delete/{dataIds}")
-    public RespBean deleteData(@PathVariable String dataIds, @RequestParam Integer probId) {
+    @DeleteMapping("/delete/{dataIds}/{probId}")
+    public RespBean deleteData(@PathVariable String dataIds, @PathVariable Integer probId) {
         String[] idsArray = dataIds.split("&");
         for (int i = 0; i < idsArray.length; i++) {
             try {
@@ -73,18 +92,41 @@ public class DataController {
             }
         }
 
-        String url = HostConfig.getJudgerAddress()+"problem";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("probId",String.valueOf(probId));
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-        try {
-            restTemplate.delete(url, request, String.class);
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        List<Data> dataListAfter = dataService.selectDataByProbId(probId);
+        if(dataListAfter.size() == 0) {
+            String url = HostConfig.getJudgerAddress()+"problem"+"?probId="+String.valueOf(probId);//请求URL
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+            String responseBody = null;
+            try {
+                responseBody = RestClientUtils.exchange(url, HttpMethod.DELETE, Response.class, map);
+            }catch (Exception e) {
+                System.out.println("数据转发失败"+e.getMessage());
+            }
 
+            if(!("true".equals(responseBody.substring(10,15)))) {
+                return RespBean.unprocessable("数据转发失败"+responseBody.substring(15));
+            }
+        }
+        else {
+            String url = HostConfig.getJudgerAddress()+"problem";
+            HttpHeaders headers = new HttpHeaders();//请求头
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+            map.add("probId",String.valueOf(probId));
+            map.add("cases",String.valueOf(dataListAfter));
+            String responseBody = null;
+            try {
+                responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, Response.class, map);
+            }catch (Exception e) {
+                System.out.println("数据转发失败"+e.getMessage());
+            }
+
+            if(!("true".equals(responseBody.substring(10,15)))) {
+                return RespBean.unprocessable("数据转发失败"+responseBody.substring(15));
+            }
+        }
         return RespBean.ok("测试数据删除成功");
     }
 
@@ -109,9 +151,9 @@ public class DataController {
         return RespBean.ok("测试数据获取成功",dataNodeList);
     }
 
-    @PutMapping("/modify/{dataId}")
-    public RespBean updateData(@PathVariable Integer dataId, @RequestParam String in,
-                               @RequestParam String out, @RequestParam Integer probId) {
+    @PutMapping("/modify/{dataId}/{probId}")
+    public RespBean updateData(@PathVariable Integer dataId, @PathVariable Integer probId,
+                               @RequestParam String in, @RequestParam String out) {
 //        List<AddDataNode> updateList = dataList.getDataList();
 //        for (int i = 0; i < updateList.size(); i++) {
 //            com.scut.cts.pojo.Data newData = new com.scut.cts.pojo.Data();
@@ -136,20 +178,29 @@ public class DataController {
             return RespBean.unprocessable("修改失败"+e.getMessage(),newData);
         }
 
+        List<Data> dataList = dataService.selectDataByProbId(probId);
+        List<AddDataNode> addList = new ArrayList<>();
+        for (int i = 0; i < dataList.size(); i++) {
+            addList.add(new AddDataNode(dataList.get(i).getDataIn(), dataList.get(i).getDataOut()));
+        }
+
         String url = HostConfig.getJudgerAddress()+"problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("probId", String.valueOf(probId));
-        map.add("cases", String.valueOf(newData));
+        map.add("cases", String.valueOf(new DataList(addList)));
 
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+        String responseBody = null;
         try {
-            restTemplate.put(url, request, String.class);
+            responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, Response.class, map);
         }catch (Exception e) {
             return RespBean.unprocessable("数据转发失败"+e.getMessage());
         }
 
+        if(!("true".equals(responseBody.substring(10,15)))) {
+            return RespBean.unprocessable("数据转发失败"+responseBody.substring(15));
+        }
         return RespBean.ok("修改成功");
     }
 }

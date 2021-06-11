@@ -1,6 +1,6 @@
 // package com.scut.cts.transfer;
 //
-// import com.scut.cts.data.*;
+// import com.scut.cts.dto.*;
 // import com.scut.cts.dto.RespBean;
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.http.HttpEntity;
@@ -12,6 +12,8 @@
 // import org.springframework.web.bind.annotation.*;
 // import org.springframework.web.client.RestTemplate;
 //
+// import java.util.List;
+//
 // @RestController
 // @RequestMapping("data/transfer")
 // public class DataForwarder {
@@ -20,6 +22,7 @@
 //
 //     @PostMapping("/add")
 //     public RespBean addDataForward(@RequestParam Integer probId, DataList dataList) {
+//         List<AddDataNode> addList = dataList.getDataList();
 //         String url = "http://localhost/problems";
 //         HttpHeaders headers = new HttpHeaders();
 //         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -37,7 +40,7 @@
 //         String body = response.getBody();
 //         return RespBean.ok("Success",body);
 //     }
-//
+
 //     @PutMapping("/update")
 //     public RespBean updateDataForward(@RequestParam Integer probId, DataList dataList) {
 //         String url = "http://localhost/problems";

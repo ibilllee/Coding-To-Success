@@ -4,14 +4,14 @@ import java.util.List;
 
 @lombok.Data
 public class DataList {
-    private Integer probId;
+    //private Integer probId;
     private List<AddDataNode> dataList;
 
     public DataList() {}
-    public DataList(Integer probId) {
-        this.probId = probId;
-    }
-    public DataList(Integer probId, List<AddDataNode> dataList) {
+//    public DataList(Integer probId) {
+//        this.probId = probId;
+//    }
+    public DataList(List<AddDataNode> dataList) {
         this.dataList = dataList;
     }
 }
