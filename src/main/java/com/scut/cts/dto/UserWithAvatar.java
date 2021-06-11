@@ -13,7 +13,7 @@ public class UserWithAvatar
 
 	public UserWithAvatar(User user,String token){
 		userId=user.getUserId();
-		token=user.getPassword();
+		this.token=token;
 		status=user.getStatus();
 		avatar=user.getHeadAddress();
 	}
