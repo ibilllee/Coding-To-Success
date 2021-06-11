@@ -248,7 +248,7 @@
 ```json
 {
   "data": {
-    "url":"xxxxxx"
+    "url":'xxxxxx'
   },
   "meta": {
     "msg": "信息修改成功",
@@ -326,22 +326,20 @@
   "data": {
     "dataTotal":30,
     "pageTotal":15,
-    "commentList": [
+    "comment": [
       {
-        "commenId": 1,
         "commentUserId": 123,
-        "commentAvatar":"xxx",
-        "content": "评论测试内容",
-        "replyTo": null,
-        "replyOrder": null
-      },
-      {
-        "commenId": 2,
-        "commentUserId": 231,
-        "commentAvatar":"xxx",
         "content": "评论测试内容",
         "replyTo": 1,
-        "replyOrder": 1
+        "replyOrder": 1,
+        "create_time": "2021-06-01 19:42:23"
+      },
+      {
+        "commentUserId": 231,
+        "content": "评论测试内容",
+        "replyTo": 1,
+        "replyOrder": 2,
+        "create_time": "2021-06-01 19:44:23"
       }
     ]
   },
@@ -481,7 +479,7 @@ json
   }
   ```
 
-### 11.添加训练
+### 11.添加训练教程
 
 - 请求路径：tutorial/add
 - 请求方法：post
@@ -596,7 +594,7 @@ json
 
   | 参数名   | 参数说明 | 备注     |
   | -------- | -------- | -------- |
-  | proId    | 题目Id   | 不能为空 |
+  | probId   | 题目Id   | 不能为空 |
   | userCode | C++代码  | 不能为空 |
 
 
@@ -993,7 +991,7 @@ json
 
 #### 20.1 添加测试数据（批量增加）
 
-- 请求路径：data/add
+- 请求路径：data/add/:probId
 
 - 请求方法：post
 
@@ -1036,7 +1034,7 @@ json
 
 #### 20.2 删除测试数据（批量删除）
 
-- 请求路径：data/delete/:dataIds
+- 请求路径：data/delete/:dataIds/:probId
 
 - 请求方法：delete
 
@@ -1104,7 +1102,7 @@ json
 
 #### 20.4修改测试数据
 
-- 请求路径：data/modify/:dataId
+- 请求路径：data/modify/:dataId/:probId
 - 请求方法：put
 - 请求参数
 
@@ -1128,3 +1126,80 @@ json
   ```
 
 ####       
+
+### 21.管理题解(查看题解在上面已经有了)
+
+#### 21.1增加题解
+
+- 请求路径：answer/add
+
+- 请求方法：post
+
+- 请求参数
+
+  | 参数名 | 参数说明       | 备注     |
+  | ------ | -------------- | -------- |
+  | probId | 题解对应题目Id | 不能为空 |
+  | text   | 题解内容       | 不能为空 |
+
+- 响应数据
+
+  ```json
+  {
+      "data": null,
+      "meta":{
+          "msg":"添加成功",
+          "status":200
+      }
+  }
+  ```
+
+#### 21.2删除题解
+
+- 请求路径：answer/delete/:answerId
+
+- 请求方法：delete
+
+- 请求参数
+
+  | 参数名   | 参数说明 | 备注     |
+  | -------- | -------- | -------- |
+  | answerId | 题解Id   | 不能为空 |
+
+- 响应数据
+
+  ```json
+  {
+      "data": null,
+      "meta":{
+          "msg":"删除成功",
+          "status":200
+      }
+  }
+  ```
+
+#### 21.3更改题解
+
+- 请求路径：answer/update/:answerId
+
+- 请求方法：put
+
+- 请求参数
+
+  | 参数名   | 参数说明     | 备注     |
+  | -------- | ------------ | -------- |
+  | answerId | 题解Id       | 不能为空 |
+  | text     | 新的题解内容 | 不能为空 |
+
+- 响应数据
+
+  ```json
+  {
+      "data": null,
+      "meta":{
+          "msg":"修改成功",
+          "status":200
+      }
+  }
+  ```
+
