@@ -12,6 +12,7 @@
     <artifactId>cts</artifactId>
     <packaging>war</packaging>
     <name>cts</name>
+    <version>0.1</version>
     <description>CTS-backend</description>
     <properties>
         <java.version>1.8</java.version>
