@@ -119,38 +119,6 @@ public class TutorialController {
 //        String body = response.getBody();
 //        return RespBean.ok("数据已转发",body);
 //    }
-    @PutMapping("/modifyData/{dataId}/{probId}")
-    public RespBean updateData(@PathVariable Integer dataId, @PathVariable Integer probId,
-                               DataList dataList) {
-        List<AddDataNode> updateList = dataList.getDataList();
-        for (int i = 0; i < updateList.size(); i++) {
-            com.scut.cts.pojo.Data newData = new com.scut.cts.pojo.Data();
-            try {
-                com.scut.cts.pojo.Data oldData = dataService.selectDataByDataId(probId,dataId);
-                newData.setId(oldData.getId());
-                newData.setDataIn(updateList.get(i).getIn());
-                newData.setDataOut(updateList.get(i).getOut());
-                dataService.updateData(newData);
-            }catch (Exception e) {
-                return RespBean.unprocessable("数据修改失败"+e.getMessage(),newData);
-            }
-        }
 
-        String url = "http://localhost/problems";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("probId", String.valueOf(probId));
-        map.add("dataList", String.valueOf(dataList));
-
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-        try {
-            restTemplate.put(url, request, String.class);
-        }catch (Exception e) {
-            return RespBean.unprocessable("数据转发失败"+e.getMessage());
-        }
-
-        return RespBean.ok("数据修改成功");
-    }
 }
 
