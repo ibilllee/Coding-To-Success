@@ -1,6 +1,8 @@
 package com.scut.cts.controller;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.scut.cts.dto.*;
 import com.scut.cts.pojo.Comment;
 import com.scut.cts.pojo.Tutorial;
@@ -96,9 +98,11 @@ public class TutorialController {
     @GetMapping("/{tutoId}/commentList/{page}/{pageSize}")
     public RespBean getComments(@PathVariable Integer tutoId, @PathVariable Integer page,
                                 @PathVariable Integer pageSize) {
-        PageHelper.startPage(page,pageSize);
+        Page pageResult = PageHelper.startPage(page, pageSize);
         List<CommentWithAvatar> commentList = commentService.getComments(tutoId);
-        return RespBean.ok("获取用户评论成功",new CommentList(commentList));
+
+        return RespBean.ok("获取用户评论成功",new CommentList(commentList,
+                (int)pageResult.getTotal(),(int)pageResult.getPages()));
     }
 }
 

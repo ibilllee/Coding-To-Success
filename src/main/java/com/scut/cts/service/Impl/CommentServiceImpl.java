@@ -34,6 +34,11 @@ public class CommentServiceImpl implements CommentService
 	}
 
 	@Override
+	public Integer getCommentsCount(Integer tutoId) {
+		return commentMapper.getCommentCount(tutoId);
+	}
+
+	@Override
 	public boolean addComment(Comment comment) {
 		return commentMapper.insert(comment) == 1;
 	}

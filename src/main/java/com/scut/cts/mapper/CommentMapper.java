@@ -16,6 +16,9 @@ public interface CommentMapper extends Mapper<Comment> {
 	@Select("select count(*) from comment where comment_tuto_id = #{tutoId} and reply_to = #{commentId}")
 	int getReplyCount(int tutoId, int commentId);
 
+	@Select("select count(*) from comment where comment_tuto_id = #{tutoId}")
+	Integer getCommentCount(int tutoId);
+
 	@Update("UPDATE comment SET comment_user_id = 'CLOSED_ACCOUNT' WHERE comment_user_id = #{userId}")
 	int updateToClosedAccountByUserId(String userId);
 
