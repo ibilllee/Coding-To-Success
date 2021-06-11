@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS bulletin
 );
 
 INSERT INTO user
-VALUES ("user", "user", TRUE, "adress");
+VALUES ("user", "7hHLsZBS5AsHqsDKBgwj7g==", TRUE, "adress");
 INSERT INTO tutorial
 VALUES (1, "标题", 1.0, "内容");
 INSERT INTO problem
