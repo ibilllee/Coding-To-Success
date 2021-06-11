@@ -1,5 +1,6 @@
 package com.scut.cts.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.scut.cts.pojo.Data;
 import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.DataService;
@@ -31,7 +32,9 @@ public class DataController {
         for (int i = 0; i < addList.size(); i++) {
             Data data = null;
             try {
-                data = new Data(probId,dataService.selectMaxDataIdInProbId(probId)+1,
+                Integer maxDataId= dataService.selectMaxDataIdInProbId(probId);
+                if (maxDataId==null) maxDataId=0;
+                data = new Data(probId,maxDataId+1,
                         addList.get(i).getIn(), addList.get(i).getOut());
                 dataService.addData(data);
             }catch (Exception e) {
@@ -39,12 +42,12 @@ public class DataController {
             }
         }
 
-        String url = "http://localhost/problems";
+        String url = "http://8.135.61.132:28370/problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("probId", String.valueOf(probId));
-        map.add("dataList", String.valueOf(dataList));
+        map.add("cases", String.valueOf(dataList));
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
         ResponseEntity<String> response = null;
@@ -67,7 +70,7 @@ public class DataController {
             }
         }
 
-        String url = "http://localhost/problems";
+        String url = "ttp://8.135.61.132:28370/problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -130,7 +133,7 @@ public class DataController {
             return RespBean.unprocessable("修改失败"+e.getMessage(),newData);
         }
 
-        String url = "http://localhost/problems";
+        String url = "ttp://8.135.61.132:28370/problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

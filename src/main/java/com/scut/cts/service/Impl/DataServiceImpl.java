@@ -44,7 +44,7 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public int selectMaxDataIdInProbId(Integer probId) {
+    public Integer selectMaxDataIdInProbId(Integer probId) {
         return dataMapper.selectMaxDataIdInProbId(probId);
     }
 }

@@ -29,7 +29,7 @@ public class CodeController
 							 @RequestParam(value = "probId") int probId) {
 		Code code = new Code(userCode, probId);
 
-		String url = "http://localhost/judger";
+		String url = "http://8.135.61.132:28370/judger";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

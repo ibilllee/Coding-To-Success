@@ -11,5 +11,5 @@ public interface DataService {
     public boolean updateData(Data data);
     public boolean deleteDataByDataId(Integer probId, Integer dataId);
     public boolean deleteDataByProbId(Integer probId);
-    public int selectMaxDataIdInProbId(Integer probId);
+    public Integer selectMaxDataIdInProbId(Integer probId);
 }

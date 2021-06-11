@@ -2,7 +2,7 @@
 
 ### 添加
 
-- 请求路径：problems
+- 请求路径：problem
 
 - 请求方法：POST
 
@@ -55,7 +55,7 @@
 
 ### 更新
 
-- 请求路径：problems
+- 请求路径：problem
 
 - 请求方法：PUT
 
@@ -88,7 +88,7 @@
 
 ### 删除
 
-- 请求路径：problems
+- 请求路径：problem
 
 - 请求方法：DELETE
 
