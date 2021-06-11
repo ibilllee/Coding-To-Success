@@ -58,9 +58,9 @@
 {
   "data": {
     "status": 1,
-    "token":'token值',
+    "token":"token值",
     "userId":1,
-    "avatar":'xxxx'
+    "avatar":"xxxx"
   },
   "meta": {
     "msg": "用户登录成功",

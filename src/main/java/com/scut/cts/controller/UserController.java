@@ -2,7 +2,7 @@ package com.scut.cts.controller;
 
 import com.scut.cts.dto.RespBean;
 import com.scut.cts.dto.Status;
-import com.scut.cts.dto.StatusAndToken;
+import com.scut.cts.dto.UserWithAvatar;
 import com.scut.cts.dto.UserIdAndPassword;
 import com.scut.cts.pojo.User;
 import com.scut.cts.service.UserService;
@@ -33,15 +33,15 @@ public class UserController
 
     @PostMapping("/login")
     public RespBean login(@RequestParam String userId, @RequestParam String password) {
-        StatusAndToken statusAndToken ;
+        UserWithAvatar userWithAvatar;
         User user = new User(userId, password);
         try {
-            statusAndToken = userService.login(user);
+            userWithAvatar = userService.login(user);
         }catch (Exception e) {
             return RespBean.unprocessable("用户登录失败"+e.getMessage());
         }
-        if(statusAndToken!=null) {
-            return RespBean.ok("用户登录成功",statusAndToken);
+        if(userWithAvatar !=null) {
+            return RespBean.ok("用户登录成功", userWithAvatar);
         }
         return RespBean.unprocessable("用户登录失败");
     }
