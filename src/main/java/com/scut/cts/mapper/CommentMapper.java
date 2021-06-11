@@ -11,7 +11,7 @@ import java.util.List;
 public interface CommentMapper extends Mapper<Comment> {
 
 	@Select("select * from comment where comment_tuto_id = #{tutoId}")
-	List<Comment> selectByTutoId(int tutoId);
+	List<Comment> selectByTutoId(Integer tutoId);
 
 	@Select("select count(*) from comment where comment_tuto_id = #{tutoId} and reply_to = #{commentId}")
 	int getReplyCount(int tutoId, int commentId);

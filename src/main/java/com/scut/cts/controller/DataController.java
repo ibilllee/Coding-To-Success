@@ -1,10 +1,11 @@
 package com.scut.cts.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.scut.cts.dto.AddDataNode;
+import com.scut.cts.dto.DataList;
+import com.scut.cts.dto.DataNode;
 import com.scut.cts.pojo.Data;
 import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.DataService;
-import com.scut.cts.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -70,7 +71,7 @@ public class DataController {
             }
         }
 
-        String url = "ttp://8.135.61.132:28370/problem";
+        String url = "http://8.135.61.132:28370/problem";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

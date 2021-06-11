@@ -1,4 +1,4 @@
-package com.scut.cts.data;
+package com.scut.cts.dto;
 
 @lombok.Data
 public class DataNode {

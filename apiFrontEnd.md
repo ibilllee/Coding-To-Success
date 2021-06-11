@@ -958,7 +958,7 @@ json
 
 #### 19.2 获取用户代码
 
-- 请求路径：code/get/:proId/:userId
+- 请求路径：code/get/:probId/:userId
 
 - 请求方法：get
 

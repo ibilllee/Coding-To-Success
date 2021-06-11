@@ -1,6 +1,4 @@
-package com.scut.cts.data;
-
-import com.scut.cts.data.AddDataNode;
+package com.scut.cts.dto;
 
 import java.util.List;
 

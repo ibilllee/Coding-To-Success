@@ -7,7 +7,6 @@ import com.scut.cts.pojo.Tutorial;
 import com.scut.cts.service.CommentService;
 import com.scut.cts.service.DataService;
 import com.scut.cts.service.TutorialService;
-import com.scut.cts.data.*;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

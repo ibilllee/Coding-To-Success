@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService
 	private UserMapper userMapper;
 
 	@Override
-	public List<CommentWithAvatar> getComments(int tutoId) {
+	public List<CommentWithAvatar> getComments(Integer tutoId) {
 		List<Comment> comments = commentMapper.selectByTutoId(tutoId);
 		ArrayList<CommentWithAvatar> commentWithAvatars = new ArrayList<>();
 		for (Comment comment : comments) {
