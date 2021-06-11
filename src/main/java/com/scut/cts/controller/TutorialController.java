@@ -27,10 +27,6 @@ public class TutorialController {
     private TutorialService tutorialService;
     @Autowired
     private CommentService commentService;
-    @Autowired
-    private DataService dataService;
-    @Autowired
-    private RestTemplate restTemplate;
 
     @PostMapping("/add")
     public RespBean addTutorial(@RequestParam String titleContent, @RequestParam String content,
@@ -40,12 +36,12 @@ public class TutorialController {
         try {
             result = tutorialService.addTutorial(tutorial);
         }catch (Exception e) {
-            return RespBean.unprocessable("教程添加失败"+e.getMessage(),tutorial);
+            return RespBean.unprocessable("添加失败"+e.getMessage(),tutorial);
         }
         if(result) {
-            return RespBean.created("教程添加成功",tutorial);
+            return RespBean.created("添加成功",tutorial);
         }
-        return RespBean.unprocessable("教程添加失败",tutorial);
+        return RespBean.unprocessable("添加失败",tutorial);
     }
 
     @PutMapping("/modify/{tutoId}")
@@ -55,12 +51,15 @@ public class TutorialController {
         try {
             result = tutorialService.updateTutorial(tutorial);
         }catch (Exception e) {
-            return RespBean.unprocessable("教程修改失败"+e.getMessage(),tutorial);
+            return RespBean.unprocessable("修改失败"+e.getMessage(),tutorial);
         }
         if(result) {
-            return RespBean.ok("教程修改成功",tutorial);
+            Tutorial newTutorial = tutorialService.getTutorial(tutoId);
+            tutorial.setTitleNum(newTutorial.getTitleNum());
+            tutorial.setTitleContent(newTutorial.getTitleContent());
+            return RespBean.ok("修改成功",tutorial);
         }
-        return RespBean.unprocessable("教程修改失败",tutorial);
+        return RespBean.unprocessable("修改失败",tutorial);
     }
 
     @DeleteMapping("/delete/{tutoId}")
@@ -69,12 +68,12 @@ public class TutorialController {
         try {
             result = tutorialService.deleteTutorial(tutoId);
         }catch (Exception e) {
-            return RespBean.unprocessable("教程删除失败"+e.getMessage());
+            return RespBean.unprocessable("删除失败"+e.getMessage());
         }
         if(result) {
-            return RespBean.ok("教程删除成功");
+            return RespBean.ok("删除成功");
         }
-        return RespBean.unprocessable("教程删除失败");
+        return RespBean.unprocessable("删除失败");
     }
 
     @GetMapping("/first")
@@ -92,7 +91,7 @@ public class TutorialController {
     @GetMapping("/view")
     public RespBean getTutorials(@RequestParam(value = "tutoId") int tutoId) {
         Tutorial tutorial = tutorialService.getTutorial(tutoId);
-        return RespBean.ok("教程获取成功",tutorial);
+        return RespBean.ok("查看成功",tutorial);
     }
 
     @GetMapping("/{tutoId}/commentList/{page}/{pageSize}")
@@ -102,23 +101,5 @@ public class TutorialController {
         List<CommentWithAvatar> commentList = commentService.getComments(tutoId);
         return RespBean.ok("获取用户评论成功",new CommentList(commentList));
     }
-
-//    @PutMapping("/modifyData/{probId}")
-//    public RespBean transformData(@PathVariable int probId, @RequestParam String data) {
-//        String url = "http://localhost/problems";
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-//        map.add("probId", String.valueOf(probId));
-//        map.add("in",String.valueOf(in));
-//        map.add("out",String.valueOf(out));
-//
-//        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-//        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
-//
-//        String body = response.getBody();
-//        return RespBean.ok("数据已转发",body);
-//    }
-
 }
 

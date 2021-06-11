@@ -35,7 +35,7 @@ public class DataController {
                         addList.get(i).getIn(), addList.get(i).getOut());
                 dataService.addData(data);
             }catch (Exception e) {
-                return RespBean.unprocessable("数据添加失败");
+                return RespBean.unprocessable("测试数据添加失败"+e.getMessage());
             }
         }
 
@@ -53,7 +53,7 @@ public class DataController {
         }catch (Exception e) {
             return RespBean.unprocessable("数据转发失败"+e.getMessage());
         }
-        return RespBean.ok("数据添加成功");
+        return RespBean.ok("测试数据添加成功!");
     }
 
     @DeleteMapping("/delete/{dataIds}")
@@ -63,7 +63,7 @@ public class DataController {
             try {
                 dataService.deleteDataByDataId(probId,Integer.parseInt(idsArray[i]));
             }catch (Exception e) {
-                return RespBean.unprocessable("数据删除失败"+e.getMessage());
+                return RespBean.unprocessable("测试数据删除失败"+e.getMessage());
             }
         }
 
@@ -79,7 +79,7 @@ public class DataController {
             System.out.println(e.getMessage());
         }
 
-        return RespBean.ok("数据删除成功");
+        return RespBean.ok("测试数据删除成功");
     }
 
     @GetMapping("/get/{probId}")
@@ -127,7 +127,7 @@ public class DataController {
         try {
             dataService.updateData(newData);
         }catch (Exception e) {
-            return RespBean.unprocessable("数据修改失败"+e.getMessage(),newData);
+            return RespBean.unprocessable("修改失败"+e.getMessage(),newData);
         }
 
         String url = "http://localhost/problems";
@@ -144,7 +144,7 @@ public class DataController {
             return RespBean.unprocessable("数据转发失败"+e.getMessage());
         }
 
-        return RespBean.ok("数据修改成功");
+        return RespBean.ok("修改成功");
     }
 }
 
