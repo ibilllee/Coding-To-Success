@@ -1,3 +1,5 @@
 project:
   my-address: 8.135.61.132/cts/
-  judger-address: 192.168.50.16:28370/
+  #judger-address: 192.168.50.16:28370/
+  judger-address: http://8.135.61.132:28370/
+  #judger-address: http://127.0.0.1/

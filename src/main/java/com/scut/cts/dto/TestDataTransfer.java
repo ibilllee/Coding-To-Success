@@ -1,4 +1,4 @@
- package com.scut.cts.transfer;
+ package com.scut.cts.dto;
 
  import lombok.Data;
  import org.springframework.web.bind.annotation.*;

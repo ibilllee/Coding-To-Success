@@ -7,7 +7,7 @@ import com.scut.cts.dto.RespBean;
 import com.scut.cts.service.DataService;
 import com.scut.cts.dto.*;
 import com.scut.cts.utils.RestClientUtils;
-import com.sun.tools.internal.ws.processor.model.Response;
+//import com.sun.tools.internal.ws.processor.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
@@ -50,7 +50,8 @@ public class DataController {
         map.add("probId", String.valueOf(probId));
 
         if(dataListBefore.size() == 0) {
-            map.add("cases", String.valueOf(dataList));
+            String casesString = JSONObject.toJSONString(dataList.getDataList());
+            map.add("cases", casesString);
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
             ResponseEntity<String> response = null;
@@ -60,21 +61,23 @@ public class DataController {
                 return RespBean.unprocessable("数据转发失败" + e.getMessage());
             }
             String body = response.getBody();
-            if (!("true".equals(body.substring(10, 15)))) {
+            if (!("true".equals(body.substring(10, 14)))) {
                 return RespBean.unprocessable("测试数据添加失败!", body);
             }
         }
         else {
             List<Data> dataListAfter = dataService.selectDataByProbId(probId);
-            map.add("cases",String.valueOf(dataListAfter));
+            String casesString = JSONObject.toJSONString(transferDataType(dataListAfter));
+            map.add("cases",casesString);
 
             String responseBody = null;
             try {
-                responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, Response.class, map);
+                responseBody=restTemplate.exchange(url,HttpMethod.PUT,new HttpEntity<>(map,headers),String.class).getBody();
+                //responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, String.class,map);
             } catch (Exception e) {
                 return RespBean.unprocessable("数据转发失败" + e.getMessage());
             }
-            if (!("true".equals(responseBody.substring(10, 15)))) {
+            if (!("true".equals(responseBody.substring(10, 14)))) {
                 return RespBean.unprocessable("测试数据添加失败!", responseBody);
             }
         }
@@ -100,12 +103,13 @@ public class DataController {
             MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
             String responseBody = null;
             try {
-                responseBody = RestClientUtils.exchange(url, HttpMethod.DELETE, Response.class, map);
+                responseBody=restTemplate.exchange(url,HttpMethod.DELETE,new HttpEntity<>(map,headers),String.class).getBody();
+                // responseBody = RestClientUtils.exchange(url, HttpMethod.DELETE, String.class, map);
             }catch (Exception e) {
                 System.out.println("数据转发失败"+e.getMessage());
             }
 
-            if(!("true".equals(responseBody.substring(10,15)))) {
+            if(!("true".equals(responseBody.substring(10,14)))) {
                 return RespBean.unprocessable("数据转发失败"+responseBody.substring(15));
             }
         }
@@ -115,15 +119,17 @@ public class DataController {
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
             map.add("probId",String.valueOf(probId));
-            map.add("cases",String.valueOf(dataListAfter));
+            String caseString=JSONObject.toJSONString(transferDataType(dataListAfter));
+            map.add("cases",caseString);
             String responseBody = null;
             try {
-                responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, Response.class, map);
+                responseBody=restTemplate.exchange(url,HttpMethod.PUT,new HttpEntity<>(map,headers),String.class).getBody();
+                // responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, String.class, map);
             }catch (Exception e) {
                 System.out.println("数据转发失败"+e.getMessage());
             }
 
-            if(!("true".equals(responseBody.substring(10,15)))) {
+            if(!("true".equals(responseBody.substring(10,14)))) {
                 return RespBean.unprocessable("数据转发失败"+responseBody.substring(15));
             }
         }
@@ -169,6 +175,9 @@ public class DataController {
 //        }
         com.scut.cts.pojo.Data newData = new com.scut.cts.pojo.Data();
         com.scut.cts.pojo.Data oldData = dataService.selectDataByDataId(probId,dataId);
+        if(oldData==null){
+            return RespBean.unprocessable("数据点不存在");
+        }
         newData.setId(oldData.getId());
         newData.setDataIn(in);
         newData.setDataOut(out);
@@ -189,19 +198,29 @@ public class DataController {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("probId", String.valueOf(probId));
-        map.add("cases", String.valueOf(new DataList(addList)));
+        String caseString=JSONObject.toJSONString(addList);
+        map.add("cases", String.valueOf(caseString));
 
         String responseBody = null;
         try {
-            responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, Response.class, map);
+            responseBody=restTemplate.exchange(url,HttpMethod.PUT,new HttpEntity<>(map,headers),String.class).getBody();
+            // responseBody = RestClientUtils.exchange(url, HttpMethod.PUT, String.class, map);
         }catch (Exception e) {
             return RespBean.unprocessable("数据转发失败"+e.getMessage());
         }
 
-        if(!("true".equals(responseBody.substring(10,15)))) {
+        if(!("true".equals(responseBody.substring(10,14)))) {
             return RespBean.unprocessable("数据转发失败"+responseBody.substring(15));
         }
         return RespBean.ok("修改成功");
+    }
+
+    private List<AddDataNode> transferDataType(List<Data> list){
+        ArrayList<AddDataNode> newList = new ArrayList<>();
+        for (Data x:list){
+            newList.add(new AddDataNode(x));
+        }
+        return newList;
     }
 }
 
