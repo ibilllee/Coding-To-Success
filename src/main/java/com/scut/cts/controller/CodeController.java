@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/code")
+@RequestMapping("/userCode")
 public class CodeController
 {
 	@Autowired
@@ -35,7 +35,7 @@ public class CodeController
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 		map.add("probId", String.valueOf(probId));
-		map.add("userCode", userCode);
+		map.add("code", userCode);
 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
 		ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);

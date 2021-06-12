@@ -130,7 +130,7 @@
   ```json
   {
       "probId":"dierti",
-      "userCode":"#include <iostream>\nint main()\n{..."
+      "code":"#include <iostream>\nint main()\n{..."
   }
   ```
 
