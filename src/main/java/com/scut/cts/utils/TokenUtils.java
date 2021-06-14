@@ -31,7 +31,7 @@ public class TokenUtils
 			token = JWT.create()
 					.withHeader(header)
 					.withClaim("username",userId)
-					.withClaim("password",password).withExpiresAt(date)
+					.withClaim("password",MD5Utils.encodeByMd5(password)).withExpiresAt(date)
 					.sign(algorithm);
 		}catch (Exception e){
 			e.printStackTrace();
