@@ -21,21 +21,21 @@ import java.util.Set;
 public class TokenAspect {
     private static Set<String> noTokenMethods = new HashSet<String>() {
         {
-//            add("login");
-//            add("register");
+           add("login");
+           add("register");
         }
     };
 
 
     @Before("execution(* com.scut.cts.controller.*.*(..))")
     public void checkToken(JoinPoint joinPoint) throws Throwable {
-//        String methodName = joinPoint.getSignature().getName();
-//        if (!noTokenMethods.contains(methodName)) {
-//            String token = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).
-//                    getRequest().getHeader("Authorization");
-//            if (!TokenUtils.verify(token)) {
-//                throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Your token is invalid");
-//            }
-//        }
+       String methodName = joinPoint.getSignature().getName();
+       if (!noTokenMethods.contains(methodName)) {
+           String token = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).
+                   getRequest().getHeader("Authorization");
+           if (!TokenUtils.verify(token)) {
+               throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Your token is invalid");
+           }
+       }
     }
 }

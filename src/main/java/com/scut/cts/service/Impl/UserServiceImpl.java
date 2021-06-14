@@ -1,6 +1,7 @@
 package com.scut.cts.service.Impl;
 
 import com.scut.cts.config.HostConfig;
+import com.scut.cts.dto.UserAndStatus;
 import com.scut.cts.mapper.CommentMapper;
 import com.scut.cts.mapper.UserMapper;
 import com.scut.cts.dto.UserWithAvatar;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -62,6 +64,11 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		return HostConfig.getMyAddress()+"Avatar/"+file.getName();
+	}
+
+	@Override
+	public List<UserAndStatus> getUserList() {
+		return userMapper.selectUserIdAndStatus();
 	}
 
 	@Override

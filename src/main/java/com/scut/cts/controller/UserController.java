@@ -1,13 +1,13 @@
 package com.scut.cts.controller;
 
-import com.scut.cts.dto.RespBean;
-import com.scut.cts.dto.Status;
-import com.scut.cts.dto.UserWithAvatar;
-import com.scut.cts.dto.UserIdAndPassword;
+import com.scut.cts.dto.*;
 import com.scut.cts.pojo.User;
 import com.scut.cts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -60,4 +60,23 @@ public class UserController
         }
         return RespBean.unprocessable("用户密码修改失败");
     }
+
+    //未完成的功能
+    @GetMapping("/getAll")
+    public RespBean getUserList(){
+        HashMap<String, List<UserAndStatus>> map = new HashMap<>();
+        List<UserAndStatus> result;
+        try {
+            result=userService.getUserList();
+        }catch (Exception e){
+            return RespBean.unprocessable("获取失败"+e.getMessage());
+        }
+        if (result!=null){
+            map.put("userList",result);
+            return RespBean.ok("获取成功",map);
+        }
+        return RespBean.unprocessable("获取失败");
+
+    }
+
 }
